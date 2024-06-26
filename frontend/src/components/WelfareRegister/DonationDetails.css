@@ -1,0 +1,41 @@
+.green-table .ant-table {
+  background-color: #eb0a0a; /* Light green background color */
+}
+
+.green-table .ant-table-thead > tr > th {
+  background-color: #560000; /* Darker green for the header */
+  color: #ffffff; /* White text for the header */
+}
+
+.green-table .ant-table-tbody > tr > td {
+  background-color: #b05d5d; /* Same light green for the table body */
+  transition: background-color 0.3s; /* Smooth transition effect */
+  
+}
+
+.green-table .ant-table-tbody .ant-table-row > .ant-table-cell-row-hover{
+  background-color: #560000; /* Black background color on hover */
+  
+}
+
+
+
+
+.bold-text strong {
+  font-weight: bold;
+}
+
+/* DonationDetails.css */
+
+.table-header {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Sherif';
+  color: white;
+}
+
+.table-cell {
+  font-size: 14px;
+  font-family: 'Sherif';
+  color: white;
+}
