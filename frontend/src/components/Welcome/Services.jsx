@@ -62,7 +62,7 @@ const Services = () => {
                 </div>
                 <div className="p-4 text-center">
                   <div className="w-full "></div>
-                  <h1 className="text-xl font-bold">{service.name}</h1>
+                  <h1 className="text-xl font-serif mb-2 font-bold">{service.name}</h1>
                   <p className="text-gray-500 group-hover:text-white duration-high text-sm line-clamp-2">
                     {service.description}
                   </p>

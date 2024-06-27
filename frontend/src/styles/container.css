@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 100;
+    margin-left: 16%;
+    max-width: 84%;
+}

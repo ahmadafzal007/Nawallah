@@ -3,10 +3,12 @@ import bgNawalah from "../../assets/bgNawalah.png";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { Link } from "react-router-dom";
+
 const LoginWelfare = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggingIn, setLoggingIn] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
 
   const dropIn = {
     hidden: {
@@ -37,8 +39,22 @@ const LoginWelfare = () => {
     setPassword(e.target.value);
   };
 
+  const validateForm = () => {
+    let errors = {};
+    if (!email) errors.email = "Email is required";
+    if (!password) errors.password = "Password is required";
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0; // Returns true if no errors found
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return; // Exit early if form validation fails
+    }
+
     setLoggingIn(true);
 
     try {
@@ -93,8 +109,13 @@ const LoginWelfare = () => {
                   value={email}
                   onChange={handleEmailChange}
                   required
-                  className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
+                  className={`w-full p-2 border rounded-md focus:outline-none focus:border-purple-600 ${
+                    formErrors.email ? "border-red-500" : ""
+                  }`}
                 />
+                {formErrors.email && (
+                  <p className="text-red-500 text-xs">{formErrors.email}</p>
+                )}
               </div>
               <div className="mb-2">
                 <label className="block font-medium mb-1">Password</label>
@@ -104,18 +125,23 @@ const LoginWelfare = () => {
                   value={password}
                   onChange={handlePasswordChange}
                   required
-                  className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
+                  className={`w-full p-2 border rounded-md focus:outline-none focus:border-purple-600 ${
+                    formErrors.password ? "border-red-500" : ""
+                  }`}
                 />
+                {formErrors.password && (
+                  <p className="text-red-500 text-xs">{formErrors.password}</p>
+                )}
               </div>
             </div>
             <div className="mt-3">
               <Link to={"/WelfareDashBoard"}>
-              <input
-                type="submit"
-                value={loggingIn ? "Logging in..." : "Login"}
-                className="w-full py-2 bg-black text-white rounded-md font-medium cursor-pointer transition-transform transform hover:scale-95"
-                disabled={loggingIn}
-              />
+                <input
+                  type="submit"
+                  value={loggingIn ? "Logging in..." : "Login"}
+                  className="w-full py-2 bg-black text-white rounded-md font-medium cursor-pointer transition-transform transform hover:scale-95"
+                  disabled={loggingIn}
+                />
               </Link>
             </div>
           </form>
