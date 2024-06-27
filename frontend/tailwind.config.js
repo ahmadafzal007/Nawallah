@@ -1,5 +1,3 @@
-
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,21 +6,36 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
-    extend: {
+    screens: {
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
 
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
+    extend: {
       transitionDelay: {
         '600': '2000ms',
       },
-
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
         cursive: ["Pacifico", "Sriracha", "cursive"],
         cursive2: ["Sriracha", "cursive"],
       },
       colors: {
-        custombg: '#0xFFFDF6F7',
-        customBoxInside: '#0xFFFFE5E5',
-        customMain : '#0xFF800000',
+        border: 'linear-gradient(90deg, rgba(255, 255, 255) 100%, rgba(106, 106, 106) 0)',
+        custombg: '#FFFDF6F7',
+        customBoxInside: '#FFFFE5E5',
+        customMain : '#800000',
         costomFont : '#f10057',
         primary: "#854d3d",
         secondary: "#560000",
@@ -42,7 +55,6 @@ module.exports = {
       animation: {
         "spin-slow": "spin 40s linear infinite",
       },
-
     },
   },
   plugins: [],
