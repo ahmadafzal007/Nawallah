@@ -1,15 +1,14 @@
 const admin = require('../Db/firebaseAdmin')
 
 const RestaurantService = {
-    async  addRestaurant(restaurant) {
-        try {
-          const restaurantRef = admin.firestore().collection('restaurantAdmins').doc();
-          await restaurantRef.set(restaurant);
-          return restaurantRef.id;
-        } catch (error) {
-          throw new Error('Error adding restaurant: ' + error.message);
-        }
-      }
+  createRestaurant: async (restaurant) => {
+    try {
+        const result = await admin.firestore().collection('restaurants_pending').add(restaurant);
+        return result;
+    } catch (error) {
+        throw new Error('Error creating restaurant: ' + error.message);
+    }
+}
 
       ,
       async emailExists(email) {

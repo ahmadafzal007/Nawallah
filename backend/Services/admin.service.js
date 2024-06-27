@@ -1,20 +1,38 @@
-const AdminService = {
-    async authorizeRestaurant(restaurantId, adminId) {
+const admin = require('../Db/firebaseAdmin');
+
+const adminService = {
+    authorizeRestaurant: async (restaurantId) => {
         try {
-            const admin = await db.collection('admin').doc(adminId).get();
-            if (!admin.exists) {
-                throw new Error('Admin does not exist');
+            // Get the restaurant from the pending collection
+            const restaurantRef = admin.firestore().collection('restaurants_pending').doc(restaurantId);
+            const restaurantDoc = await restaurantRef.get();
+            if (!restaurantDoc.exists) {
+                throw new Error('Restaurant not found in pending collection');
             }
-            const restaurant = await db.collection('restaurant').doc(restaurantId).get();
-            if (!restaurant.exists) {
-                throw new Error('Restaurant does not exist');
-            }
-            await db.collection('restaurant').doc(restaurantId).update({ authorized: true });
-            return true;
+            const restaurantData = restaurantDoc.data();
+
+            // Add to the authorized restaurants collection
+            const result = await admin.firestore().collection('restaurants').add({
+                ...restaurantData,
+                authorized: true
+            });
+
+            // Delete from the pending collection
+            await restaurantRef.delete();
+
+            return { restaurantId, authorized: true, newId: result.id };
         } catch (error) {
-            throw new Error(error);
+            throw new Error('Error authorizing restaurant: ' + error.message);
+        }
+    },
+
+    authorizeNgo: async (ngoId) => {
+        try {
+            // Similar logic for NGOs if needed
+        } catch (error) {
+            throw new Error('Error authorizing NGO: ' + error.message);
         }
     }
 }
 
-module.exports = AdminService;
+module.exports = adminService;

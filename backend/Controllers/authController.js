@@ -18,7 +18,7 @@ const authController = {
           }catch(error){
             next(error)
           }
-          const restaurantId = await restaurantService.addRestaurant(restaurant);
+          const restaurantId = await restaurantService.createRestaurant(restaurant);
 
         
           res.status(201).send({ id: restaurantId });
@@ -44,7 +44,7 @@ const authController = {
           } catch (error) {
               throw new Error(error);
           }
-          
+
           const result = await ngoService.createNgo(ngo);
           res.status(201).send({ id: result.id });
       } catch (error) {
