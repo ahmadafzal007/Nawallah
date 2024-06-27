@@ -8,6 +8,15 @@ const WelfareRegistration = () => {
   const [location, setLocation] = useState("");
   const [logoImage, setLogoImage] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    description: "",
+    address: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
+  const [showAlert, setShowAlert] = useState(false);
 
   const dropIn = {
     hidden: {
@@ -55,32 +64,47 @@ const WelfareRegistration = () => {
     setLogoImage(e.target.files[0]);
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const validate = () => {
+    let errors = {};
+    if (!formValues.name) errors.name = "Name is required";
+    if (!formValues.email) errors.email = "Email is required";
+    if (!formValues.phoneNumber) errors.phoneNumber = "Phone Number is required";
+    if (!formValues.description) errors.description = "Description is required";
+    if (!formValues.address) errors.address = "Address is required";
+    if (!logoImage) errors.logoImage = "Logo image is required";
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!logoImage) {
-      alert("Please select a logo image");
-      return;
-    }
+    const errors = validate();
+    setFormErrors(errors);
 
-    setUploading(true);
-    const formData = new FormData();
-    formData.append("file", logoImage);
-    formData.append("upload_preset", "kmzzjyam"); // Replace with your Cloudinary upload preset
+    if (Object.keys(errors).length === 0) {
+      setUploading(true);
+      const formData = new FormData();
+      formData.append("file", logoImage);
+      formData.append("upload_preset", "kmzzjyam"); // Replace with your Cloudinary upload preset
 
-    try {
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/dj3p3xvrj/image/upload`, // Replace with your Cloudinary cloud name
-        formData
-      );
-      const imageUrl = response.data.secure_url;
-      console.log("Image uploaded to:", imageUrl);
-      alert("Image uploaded successfully!");
-      // Handle the rest of your form submission logic here
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      alert("Error uploading image");
-    } finally {
-      setUploading(false);
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/dj3p3xvrj/image/upload`, // Replace with your Cloudinary cloud name
+          formData
+        );
+        const imageUrl = response.data.secure_url;
+        console.log("Image uploaded to:", imageUrl);
+        setShowAlert(true);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        alert("Error uploading image");
+      } finally {
+        setUploading(false);
+      }
     }
   };
 
@@ -90,7 +114,7 @@ const WelfareRegistration = () => {
         backgroundImage: `url(${bgNawalah})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh", // Alternatively, use Tailwind's h-screen class
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -114,10 +138,14 @@ const WelfareRegistration = () => {
                 <label className="block font-medium mb-1">Name</label>
                 <input
                   type="text"
+                  name="name"
+                  value={formValues.name}
+                  onChange={handleInputChange}
                   placeholder="Enter your name"
                   required
                   className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
                 />
+                {formErrors.name && <p className="text-red-500 text-xs">{formErrors.name}</p>}
               </div>
               <div className="mb-2">
                 <label className="block font-medium mb-1">Location</label>
@@ -132,37 +160,53 @@ const WelfareRegistration = () => {
                 <label className="block font-medium mb-1">Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleInputChange}
                   placeholder="Enter your email"
                   required
                   className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
                 />
+                {formErrors.email && <p className="text-red-500 text-xs">{formErrors.email}</p>}
               </div>
               <div className="mb-2">
                 <label className="block font-medium mb-1">Phone Number</label>
                 <input
                   type="text"
+                  name="phoneNumber"
+                  value={formValues.phoneNumber}
+                  onChange={handleInputChange}
                   placeholder="Enter your phone number"
                   required
                   className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
                 />
+                {formErrors.phoneNumber && <p className="text-red-500 text-xs">{formErrors.phoneNumber}</p>}
               </div>
-             
               <div className="mb-2">
                 <label className="block font-medium mb-1">Description</label>
                 <input
+                  type="text"
+                  name="description"
+                  value={formValues.description}
+                  onChange={handleInputChange}
                   placeholder="Enter a description"
                   required
                   className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
                 />
+                {formErrors.description && <p className="text-red-500 text-xs">{formErrors.description}</p>}
               </div>
               <div className="mb-2">
                 <label className="block font-medium mb-1">Address</label>
                 <input
                   type="text"
+                  name="address"
+                  value={formValues.address}
+                  onChange={handleInputChange}
                   placeholder="Enter your address"
                   required
                   className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
                 />
+                {formErrors.address && <p className="text-red-500 text-xs">{formErrors.address}</p>}
               </div>
               <div className="mb-2">
                 <label className="block font-medium mb-1">Welfare Logo</label>
@@ -172,21 +216,34 @@ const WelfareRegistration = () => {
                   required
                   className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
                 />
+                {formErrors.logoImage && <p className="text-red-500 text-xs">{formErrors.logoImage}</p>}
               </div>
             </div>
             <div className="mt-3">
-            <Link to={"/WelfareDashBoard"}>
               <input
                 type="submit"
-                value={uploading ? "Uploading..." : "Register"}
+                value={uploading ? "Registering..." : "Register"}
                 className="w-full py-2 bg-black text-white rounded-md font-medium cursor-pointer transition-transform transform hover:scale-95"
                 disabled={uploading}
               />
-              </Link>
             </div>
           </form>
         </div>
       </motion.div>
+      {showAlert && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+            <h2 className="text-2xl font-bold mb-4">Request Submitted</h2>
+            <p>Your request has proceeded. The system admin will verify it and inform you within the next 24 hours.<br/>Keep checking your email.</p>
+            <button
+              className="mt-4 py-2 px-4 bg-brandDark text-white rounded-md"
+              onClick={() => setShowAlert(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
