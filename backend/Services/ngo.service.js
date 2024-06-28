@@ -11,14 +11,30 @@ const ngoService = {
         }
     },
     
-    verifyToken: async (idToken) => {
-        try {
-            const decodedToken = await admin.auth().verifyIdToken(idToken);
-            return decodedToken;
-        } catch (error) {
-            throw new Error('Error verifying token: ' + error.message);
+    verifyNgo: async (email,password) => {
+      try {
+        // Query Firestore to check if the email and password combination exists in the 'ngos' collection
+        const ngoSnapshot = await db.collection('ngos')
+            .where('email', '==', email)
+            .where('password', '==', password)
+            .get();
+
+        if (ngoSnapshot.size === 0) {
+            throw new Error('No matching NGO found.');
         }
-    },
+
+        const data = ( ngoSnapshot._docs()[0].data());
+        return { success: true, message: 'NGO verified successfully.',ngo:{
+          "name": data.name,
+          "email": data.email,
+          "logo":data.logoImage
+        } };
+
+    } catch (error) {
+      console.log(error)
+        return { success: false, message: 'Error verifying NGO: ' };
+    }
+},
 
     emailExists: async (email) => {
         console.log('Checking email: ' + email);

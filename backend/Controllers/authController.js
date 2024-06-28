@@ -57,11 +57,12 @@ const authController = {
           res.status(400).send({ error: "Cannot register NGO"});
       }
   },
-  async verifyNgo(req, res) {
+  async  verifyNgo(req, res) {
     try {
-        const { idToken } = req.body;
-        const decodedToken = await ngoService.verifyToken(idToken);
-        res.status(200).send({ uid: decodedToken.uid });
+        const { email,password } = req.body;
+        const response = await ngoService.verifyNgo(email,password);
+        
+        res.status(200).send({ response });
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
