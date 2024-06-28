@@ -18,6 +18,7 @@ import {
   getDocs,
   orderBy,
   query,
+  getDoc,
   setDoc,
   updateDoc,
   where,
@@ -44,28 +45,7 @@ import { LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
 import axios from 'axios'; // ES6 module
 import { useForm } from 'react-hook-form';
 
-const staticdata1 = [
-  {
-    id: 1,
-   
-    size: "Small",
-    prices: " $22  ",
-   
-  },
-  {
-    id: 1,
-   
-    size: "Medium",
-    prices: " $30  ",
-   
-  },
-  {
-    id: 1,
-   
-    size: "Large",
-    prices: " $40  ",
-   
-  },]
+
 const Reataurant = () => {
   const {
     register,
@@ -84,24 +64,25 @@ const Reataurant = () => {
     const [addaddon,setaddaddon]=useState(false);
     const [images, setImages] = useState([]);
     const [urls, setUrls] = useState([]);
-    const [restaurant,setrestaurant] = useState()
+    const [restaurant,setRestaurant] = useState([])
     const [order,setorder] = useState()
     const [category,setcategory] = useState()
     const [ cordinate, setcordinate]=useState([])
     const [addons,setaddons] = useState()
     const [addonsid,setaddonsid] = useState()
+    const[loading , setLoading] = useState(true)
    
     let latitude = 0;
 let longitude = 0;
     const location = new GeoPoint(latitude, longitude);
-  const getAllRestaurant= async () => {
-    const addUser = collection(firestore,   "restaurantAdmins");
-    const getData = await getDocs(addUser);
-    
-   
-    setrestaurant(getData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
-
+    const getAllRestaurants = async () => {
+      const querySnapshot = await getDocs(collection(firestore, "restaurantAdmins"));
+      const restaurantList = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      return restaurantList
     };
 
 
@@ -400,7 +381,7 @@ geocodeAddress(address, apiKey)
  
         const datacategory = {
          
-          username: name,
+          name: name,
           logo: selectedImage,
           email:email,
           phone:phone,
@@ -535,11 +516,23 @@ geocodeAddress(address, apiKey)
   };
 
   useEffect(() => {
-     getAllOrders()
-    getAllRestaurant()
-   
-  
+    const fetchRestaurants = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(firestore, "restaurantAdmins"));
+        const restaurantList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setRestaurant(restaurantList);
+      } catch (error) {
+        console.error("Error fetching restaurants: ", error);
+      }
+    };
+
+    fetchRestaurants();
   }, []);
+
+
 
   const addaddons = async () => {
     try {
@@ -595,8 +588,11 @@ geocodeAddress(address, apiKey)
     setSearchQuery(e.target.value);
   };
     // Function to filter products based on search query
-    const filteredrestaurant = restaurant?.filter((product) =>
-    product.username.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredrestaurant = restaurant?.filter((product) =>{
+      console.log(product, product.username)
+    return  product.username.toLowerCase().includes(searchQuery.toLowerCase())
+
+    }
   );
 
   const datee = (timestamp)=>{
@@ -1143,8 +1139,8 @@ geocodeAddress(address, apiKey)
             <div className='mt-[24px] xl:mt-[20px] ml-[29px]'>
                 <h1 className='selector text-[#E5E5E5] font-normal xl:text-[20px] text-[25px]'>Edit Restaurant Details</h1>
                 <div className=' mt-[13px] rounded-full justify-between w-full md:w-[377px] h-12 xl:h-10 items-center px-4 flex flex-row gap-3 border-[#bdbdbd0d] border-solid bg-[#353535]'>
-            <input type="text"   value={updateData["username"]} name="username"
-             onChange={(e) =>  setUpdateData({ ...updateData, ["username"]: e.target.value })}  className='text-base   focus:outline-none focus:ring-0 font-normal seletor text-[#E5E5E5] my-5  bg-[#353535]' placeholder='Restaurant Name'/>
+            <input type="text"   value={updateData["name"]} name="name"
+             onChange={(e) =>  setUpdateData({ ...updateData, ["name"]: e.target.value })}  className='text-base   focus:outline-none focus:ring-0 font-normal seletor text-[#E5E5E5] my-5  bg-[#353535]' placeholder='Restaurant Name'/>
             </div>
                     
             <div className=' mt-[8px] rounded-full justify-between w-full md:w-[377px] h-12  xl:h-10 items-center px-4 flex flex-row gap-3 border-[#bdbdbd0d] border-solid bg-[#353535]'>

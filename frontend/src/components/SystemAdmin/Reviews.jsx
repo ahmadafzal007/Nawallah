@@ -101,7 +101,7 @@ const UnauthorizedRestaurants = () => {
                   <td className="py-4 pl-6 font-light text-sm 2xl:text-lg text-white whitespace-nowrap">
                     <img src={restaurant.logo} alt={`${restaurant.name} logo`} className="w-10 h-10 rounded-full" />
                   </td>
-                  <td>{restaurant.name}</td>
+                  <td>{restaurant.username}</td>
                   <td>{restaurant.email}</td>
                   <td>{restaurant.address}</td>
                   <td>{restaurant.phone}</td>
