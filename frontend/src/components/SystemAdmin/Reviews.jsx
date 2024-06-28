@@ -1,54 +1,80 @@
-import "../../styles/font/font.css"
-import pfp from "../../assets/placeholder.png"
-import pfp1 from "../../assets/placeholder (1).png"
-import pfp2 from "../../assets/placeholder (2).png"
+import "../../styles/font/font.css";
 import {
   collection,
   doc,
   getDocs,
-  orderBy,
-  query,
+  getDoc,
   setDoc,
-  updateDoc,
   deleteDoc,
 } from "firebase/firestore/lite";
 import { firestore } from "../../firebase.config.jsx";
-import { useEffect } from 'react'
-
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 
 const UnauthorizedRestaurants = () => {
-  // Dummy data
-  const restaurants = [
-    {
-      id: 1,
-      logo: 'https://via.placeholder.com/40',
-      name: 'Restaurant One',
-      email: 'contact@restaurantone.com',
-      address: '123 Main St, City, Country',
-      phone: '+1234567890',
-    },
-    {
-      id: 2,
-      logo: 'https://via.placeholder.com/40',
-      name: 'Restaurant Two',
-      email: 'contact@restauranttwo.com',
-      address: '456 Another St, City, Country',
-      phone: '+0987654321',
-    },
-    // Add more restaurants as needed
-  ];
+  const [restaurants, setRestaurants] = useState([]);
 
-  const handleAccept = (id) => {
-    // Implement accept functionality here
-    console.log(`Accepted restaurant with ID: ${id}`);
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(firestore, "restaurants_pending"));
+        const restaurantList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setRestaurants(restaurantList);
+      } catch (error) {
+        console.error("Error fetching restaurants: ", error);
+      }
+    };
+
+    fetchRestaurants();
+  }, []);
+
+  const handleAccept = async (id) => {
+    try {
+      const restaurantDocRef = doc(firestore, "restaurants_pending", id);
+      const restaurantDocSnap = await getDoc(restaurantDocRef);
+      if (restaurantDocSnap.exists()) {
+        const restaurantData = restaurantDocSnap.data();
+
+        // Move to restaurantAdmins collection
+        await setDoc(doc(firestore, "restaurantAdmins", id), restaurantData);
+
+        // Remove from restaurants_pending collection
+        await deleteDoc(restaurantDocRef);
+
+        console.log(`Accepted restaurant with ID: ${id}`);
+        setRestaurants(prevRestaurants => prevRestaurants.filter(restaurant => restaurant.id !== id));
+      } else {
+        console.log("No such document!");
+      }
+    } catch (error) {
+      console.error("Error accepting restaurant: ", error);
+    }
   };
 
-  const handleReject = (id) => {
-    // Implement reject functionality here
-    console.log(`Rejected restaurant with ID: ${id}`);
+  const handleReject = async (id) => {
+    try {
+      const restaurantDocRef = doc(firestore, "restaurants_pending", id);
+      const restaurantDocSnap = await getDoc(restaurantDocRef);
+      if (restaurantDocSnap.exists()) {
+        const restaurantData = restaurantDocSnap.data();
+
+        // Move to restaurants_rejected collection
+        await setDoc(doc(firestore, "restaurants_rejected", id), restaurantData);
+
+        // Remove from restaurants_pending collection
+        await deleteDoc(restaurantDocRef);
+
+        console.log(`Rejected restaurant with ID: ${id}`);
+        setRestaurants(prevRestaurants => prevRestaurants.filter(restaurant => restaurant.id !== id));
+      } else {
+        console.log("No such document!");
+      }
+    } catch (error) {
+      console.error("Error rejecting restaurant: ", error);
+    }
   };
 
   return (
@@ -75,7 +101,7 @@ const UnauthorizedRestaurants = () => {
                   <td className="py-4 pl-6 font-light text-sm 2xl:text-lg text-white whitespace-nowrap">
                     <img src={restaurant.logo} alt={`${restaurant.name} logo`} className="w-10 h-10 rounded-full" />
                   </td>
-                  <td>{restaurant.name}</td>
+                  <td>{restaurant.username}</td>
                   <td>{restaurant.email}</td>
                   <td>{restaurant.address}</td>
                   <td>{restaurant.phone}</td>

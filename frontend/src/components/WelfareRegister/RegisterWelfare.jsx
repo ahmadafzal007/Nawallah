@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import bgNawalah from "../../assets/bgNawalah.png";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import AuthApi from "../../API/AuthApi/index";
 
 const WelfareRegistration = () => {
   const [location, setLocation] = useState("");
@@ -14,6 +14,8 @@ const WelfareRegistration = () => {
     phoneNumber: "",
     description: "",
     address: "",
+    password: "",
+    confirmPassword: "",
   });
   const [formErrors, setFormErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
@@ -76,6 +78,10 @@ const WelfareRegistration = () => {
     if (!formValues.phoneNumber) errors.phoneNumber = "Phone Number is required";
     if (!formValues.description) errors.description = "Description is required";
     if (!formValues.address) errors.address = "Address is required";
+    if (!formValues.password) errors.password = "Password is required";
+    if (formValues.password !== formValues.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
+    }
     if (!logoImage) errors.logoImage = "Logo image is required";
     return errors;
   };
@@ -97,8 +103,26 @@ const WelfareRegistration = () => {
           formData
         );
         const imageUrl = response.data.secure_url;
-        console.log("Image uploaded to:", imageUrl);
-        setShowAlert(true);
+        const jsonData = {
+          name: formValues.name,
+          email: formValues.email,
+          phone: formValues.phoneNumber,
+          description: formValues.description,
+          address: formValues.address,
+          password: formValues.password,
+          logoImage: imageUrl,
+          location: location,
+        };
+
+        // Call your NGO registration API endpoint
+        const serverResponse = await AuthApi.registerNgo(jsonData);
+        console.log('server response',serverResponse)
+
+        if (serverResponse.status === 200) {
+          setShowAlert(true);
+        } else {
+          throw new Error(serverResponse.message || 'Failed to register NGO');
+        }
       } catch (error) {
         console.error("Error uploading image:", error);
         alert("Error uploading image");
@@ -209,6 +233,32 @@ const WelfareRegistration = () => {
                 {formErrors.address && <p className="text-red-500 text-xs">{formErrors.address}</p>}
               </div>
               <div className="mb-2">
+                <label className="block font-medium mb-1">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  value={formValues.password}
+                  onChange={handleInputChange}
+                  placeholder="Enter your password"
+                  required
+                  className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
+                />
+                {formErrors.password && <p className="text-red-500 text-xs">{formErrors.password}</p>}
+              </div>
+              <div className="mb-2">
+                <label className="block font-medium mb-1">Confirm Password</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={formValues.confirmPassword}
+                  onChange={handleInputChange}
+                  placeholder="Confirm your password"
+                  required
+                  className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
+                />
+                {formErrors.confirmPassword && <p className="text-red-500 text-xs">{formErrors.confirmPassword}</p>}
+              </div>
+              <div className="mb-2">
                 <label className="block font-medium mb-1">Welfare Logo</label>
                 <input
                   type="file"
@@ -234,7 +284,7 @@ const WelfareRegistration = () => {
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
             <h2 className="text-2xl font-bold mb-4">Request Submitted</h2>
-            <p>Your request has proceeded. The system admin will verify it and inform you within the next 24 hours.<br/>Keep checking your email.</p>
+            <p>Your request has proceeded. The system admin will verify it and inform you within the next 24 hours. Keep checking your email.</p>
             <button
               className="mt-4 py-2 px-4 bg-brandDark text-white rounded-md"
               onClick={() => setShowAlert(false)}

@@ -3,6 +3,7 @@ import axios from "axios";
 import bgNawalah from "../../assets/bgNawalah.png";
 import { motion } from "framer-motion";
 import { BrandingWatermarkOutlined } from "@mui/icons-material";
+import AuthApi from "../../API/AuthApi/index"
 
 const Registration = () => {
   const [location, setLocation] = useState("");
@@ -48,7 +49,7 @@ const Registration = () => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            setLocation(`Lat: ${latitude}, Long: ${longitude}`);
+            setLocation(` ${latitude}, ${longitude}`);
           },
           (error) => {
             console.error("Error fetching location: ", error);
@@ -89,13 +90,14 @@ const Registration = () => {
     e.preventDefault();
     const errors = validate();
     setFormErrors(errors);
-
+  
     if (Object.keys(errors).length === 0) {
       setUploading(true);
       const formData = new FormData();
       formData.append("file", logoImage);
       formData.append("upload_preset", "kmzzjyam");
-
+      let serverResponse;
+  
       try {
         const response = await axios.post(
           `https://api.cloudinary.com/v1_1/dj3p3xvrj/image/upload`,
@@ -103,15 +105,39 @@ const Registration = () => {
         );
         const imageUrl = response.data.secure_url;
         console.log("Image uploaded to:", imageUrl);
+  
+        const jsonData = {
+          username: formValues.name,
+          email: formValues.email,
+          phone: formValues.phoneNumber,
+          category: formValues.category,
+          description: formValues.description,
+          address: formValues.address,
+          password: password,
+          logo: imageUrl,
+          location: location,
+          openingHours: openingHours
+        };
+  
+        console.log("Data to be sent to backend:", jsonData);
+  
+        // Send jsonData to the backend
+        serverResponse = await AuthApi.registerRestaurant(jsonData);
+        console.log("response received" , serverResponse)
+        if (serverResponse.message){
+          alert(serverResponse.message)
+        }else
         setShowAlert(true);
+  
       } catch (error) {
         console.error("Error uploading image:", error);
-        alert("Error uploading image");
+        alert(serverResponse.message)
       } finally {
         setUploading(false);
       }
     }
   };
+  
 
   return (
     <div

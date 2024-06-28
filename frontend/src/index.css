@@ -40,7 +40,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #560000;
+  /* background:gre en; */
+  height: fit-content;
+} 
+
+.gradient {
+  background: linear-gradient(to bottom right, #fff7ad, #ffa9f9);
 
 }
 

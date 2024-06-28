@@ -39,11 +39,14 @@ module.exports = {
         costomFont : '#f10057',
         primary: "#854d3d",
         secondary: "#560000",
-        brandDark: "#802525",
+        brandDark: "#7F1D1D",
         dark: "#1e1e1e",
+        darkBlue:"#00224D",
         light: "#f5f5f5",
         card : "#802525",
         footer: "#530102",
+        customyellow: '#fff7ad',
+        custompink: '#ffa9f9',
       },
       container: {
         center: true,
@@ -51,9 +54,15 @@ module.exports = {
           DEFAULT: "1rem",
           sm: "3rem",
         },
+      }, keyframes: {
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
       },
       animation: {
         "spin-slow": "spin 40s linear infinite",
+        'fade-in': 'fadeIn 0.3s ease-in-out',
       },
     },
   },

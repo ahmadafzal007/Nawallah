@@ -6,9 +6,10 @@ import Banner from '../components/Welcome/Banner';
 import AppStore from '../components/Welcome/AppStore';
 import Testimonials from '../components/Welcome/Testimonials';
 import Footer from '../components/Welcome/Footer';
-
+// import background from '../components'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SDGIcons from '../components/Welcome/SDGIcons';
 
   
 
@@ -24,12 +25,13 @@ const WelcomePage = () => {
     AOS.refresh();
   }, []);
   return (
-    <div   className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
+    <div   className="gradient text-gray-900  duration-200 overflow-x-hidden">
       <NavBar/>
       <Hero/>
       <Services/>
+      {/* <AppStore/> */}
       <Banner/>
-      <AppStore/>
+      <SDGIcons/>
       <Testimonials/>
       <Footer/>
     </div>

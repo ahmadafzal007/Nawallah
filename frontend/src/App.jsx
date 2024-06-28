@@ -32,7 +32,7 @@ import WelfareTable from './pages/Welfares.jsx'
 
 const SideBarLayout = () => {
   return (
-    <div className="flex ">
+    <div className="flex bg-green-700">
       <Sidebar />
       <Outlet />
     </div>

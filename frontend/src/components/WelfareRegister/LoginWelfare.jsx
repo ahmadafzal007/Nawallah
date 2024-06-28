@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import bgNawalah from "../../assets/bgNawalah.png";
+import React, { useState , useEffect } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
-import { Link } from "react-router-dom";
-
+import AuthApi from "../../API/AuthApi";
+import { Navigate, useNavigate } from "react-router-dom";
 const LoginWelfare = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggingIn, setLoggingIn] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
 
   const dropIn = {
     hidden: {
@@ -56,17 +55,16 @@ const LoginWelfare = () => {
     }
 
     setLoggingIn(true);
-
+    let serverResponse;
     try {
-      // Simulate login with axios post request
-      const response = await axios.post("https://example.com/login", {
-        email,
-        password,
-      });
+      serverResponse = await AuthApi.loginNgo(email,password);
+      if (serverResponse.response.success){
+        localStorage.setItem("ngo",JSON.stringify(serverResponse.response.ngo))
+            navigate("../WelfareDashBoard")
+      }else{
+        alert(serverResponse.response.message)
+      }
 
-      console.log("Login response:", response.data);
-      alert("Logged in successfully!");
-      // Handle successful login logic here
     } catch (error) {
       console.error("Error logging in:", error);
       alert("Error logging in. Please try again.");
@@ -78,10 +76,9 @@ const LoginWelfare = () => {
   return (
     <div
       style={{
-        backgroundImage: `url(${bgNawalah})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh", // Alternatively, use Tailwind's h-screen class
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -92,58 +89,55 @@ const LoginWelfare = () => {
         variants={dropIn}
         initial="hidden"
         animate="visible"
-        className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 mr-20 max-w-2xl w-full"
+        className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 max-w-2xl w-full"
       >
-        <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg  p-5 rounded-lg shadow-lg">
-          <div className="text-2xl font-medium mb-2 relative">
-            Welfare Login
-            <div className="absolute left-0 bottom-0 h-1 w-8 bg-brandDark rounded-full"></div>
-          </div>
+        <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-5 rounded-lg shadow-lg">
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 gap-3 mb-2">
-              <div className="mb-2">
-                <label className="block font-medium mb-1">Email</label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  required
-                  className={`w-full p-2 border rounded-md focus:outline-none focus:border-purple-600 ${
-                    formErrors.email ? "border-red-500" : ""
-                  }`}
-                />
-                {formErrors.email && (
-                  <p className="text-red-500 text-xs">{formErrors.email}</p>
-                )}
-              </div>
-              <div className="mb-2">
-                <label className="block font-medium mb-1">Password</label>
-                <input
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                  required
-                  className={`w-full p-2 border rounded-md focus:outline-none focus:border-purple-600 ${
-                    formErrors.password ? "border-red-500" : ""
-                  }`}
-                />
-                {formErrors.password && (
-                  <p className="text-red-500 text-xs">{formErrors.password}</p>
-                )}
-              </div>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+                className={`w-full p-2 border rounded-md focus:outline-none focus:border-purple-600 ${
+                  formErrors.email ? "border-red-500" : ""
+                }`}
+              />
+              {formErrors.email && (
+                <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>
+              )}
             </div>
-            <div className="mt-3">
-              <Link to={"/WelfareDashBoard"}>
-                <input
-                  type="submit"
-                  value={loggingIn ? "Logging in..." : "Login"}
-                  className="w-full py-2 bg-black text-white rounded-md font-medium cursor-pointer transition-transform transform hover:scale-95"
-                  disabled={loggingIn}
-                />
-              </Link>
+            <div className="mb-4">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+                className={`w-full p-2 border rounded-md focus:outline-none focus:border-purple-600 ${
+                  formErrors.password ? "border-red-500" : ""
+                }`}
+              />
+              {formErrors.password && (
+                <p className="text-red-500 text-xs mt-1">{formErrors.password}</p>
+              )}
             </div>
+            <button
+              type="submit"
+              className="w-full py-2 bg-black text-white rounded-md font-medium cursor-pointer transition-transform transform hover:scale-95"
+              disabled={loggingIn}
+            >
+              {loggingIn ? "Logging in..." : "Login"}
+            </button>
           </form>
         </div>
       </motion.div>

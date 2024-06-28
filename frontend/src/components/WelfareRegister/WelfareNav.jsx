@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown, Menu, Button } from "antd";
 import { FaUser } from "react-icons/fa";
 import { DownOutlined } from "@ant-design/icons";
@@ -6,9 +6,14 @@ import Logo from "../../assets/nawalah.png";
 
 const WelfareNav = () => {
   // Dummy data for welfare name and logo (replace with actual data as needed)
-  const welfareName = "Akhuwat ";
-  const welfareLogo = Logo; // Assuming Logo is your welfare logo image import
+ const [welfareName, setWelfareName]  =useState("asdf");
+ const [welfareLogo, setwelfareLogo] = useState("asdf");
 
+ useEffect(()=>{
+      const ngo = JSON.parse(localStorage.getItem("ngo"));
+     setWelfareName(ngo.name);
+     setwelfareLogo(ngo.logo);
+ },[])
   const menu = (
     <Menu style={{ width: "220px" }}>
       <Menu.Item key="logo" style={{ borderBottom: "1px solid #e8e8e8", paddingBottom: "8px" }}>
