@@ -35,8 +35,8 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-secondary to-secondary/90 shadow-md bg-gray-900 text-white">
-      <div className="container mx-auto py-2 px-4 md:px-8">
+    <div className="bg-gradient-to-r from-secondary to-secondary/90 shadow-md   text-white">
+      <div className="container mx-auto py-8 px-4 md:px-8">
         <div className="flex justify-between items-center">
           {/* Logo section */}
           <div data-aos="fade-down" data-aos-once="true">

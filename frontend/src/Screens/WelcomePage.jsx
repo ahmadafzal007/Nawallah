@@ -9,6 +9,7 @@ import Footer from '../components/Welcome/Footer';
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SDGIcons from '../components/Welcome/SDGIcons';
 
   
 
@@ -24,12 +25,13 @@ const WelcomePage = () => {
     AOS.refresh();
   }, []);
   return (
-    <div   className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
+    <div   className="gradient text-gray-900  duration-200 overflow-x-hidden">
       <NavBar/>
       <Hero/>
       <Services/>
-      <Banner/>
-      <AppStore/>
+      {/* <AppStore/> */}
+      {/* <Banner/> */}
+      <SDGIcons/>
       <Testimonials/>
       <Footer/>
     </div>

@@ -40,9 +40,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #2A2A2A;
-    height: fit-content;
+  /* background:gre en; */
+  height: fit-content;
 } 
+
+.gradient {
+  background: linear-gradient(to bottom right, #fff7ad, #ffa9f9);
+
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
