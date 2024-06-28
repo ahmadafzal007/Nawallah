@@ -6,7 +6,7 @@ import Banner from '../components/Welcome/Banner';
 import AppStore from '../components/Welcome/AppStore';
 import Testimonials from '../components/Welcome/Testimonials';
 import Footer from '../components/Welcome/Footer';
-
+// import background from '../components'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SDGIcons from '../components/Welcome/SDGIcons';
@@ -30,7 +30,7 @@ const WelcomePage = () => {
       <Hero/>
       <Services/>
       {/* <AppStore/> */}
-      {/* <Banner/> */}
+      <Banner/>
       <SDGIcons/>
       <Testimonials/>
       <Footer/>

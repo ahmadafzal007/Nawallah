@@ -16,7 +16,7 @@ const sdgs = [
 
 const SDGIcons = () => {
   return (
-    <div className="flex flex-col items-center py-10 bg-gray-100">
+    <div className="flex flex-col items-center py-10 ">
       <h2 className="text-4xl font-bold mb-8 text-darkBlue font-cursive">SDGs we are covering</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
         {sdgs.map(sdg => (

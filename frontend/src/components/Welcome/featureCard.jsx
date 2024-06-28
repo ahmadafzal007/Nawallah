@@ -3,7 +3,7 @@ const featureCards = ({title,description,aosDelay, image}) => {
     <div class=" w-full pt-12 p-4">
         <div  data-aos-delay={aosDelay}
         class="rounded-xl bg-white p-6 text-center shadow-xl ">
-          <div class="mx-auto flex h-16 w-16 -translate-y-12 transform items-center justify-center rounded-full bg-teal-400 shadow-lg shadow-teal-500/40">
+          <div class="mx-auto flex h-24 w-24 -translate-y-12 transform items-center justify-center rounded-full bg-darkBlue shadow-lg shadow-teal-500/40">
             
             <img src = {image} alt="placeholder img"/>
             

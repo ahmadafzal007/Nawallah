@@ -7,7 +7,7 @@ const Hero = () => {
     <div className="bg-transparent">
     {/* min-h-[550px] sm:min-h-[600px]  */}
       <div className=" flex justify-center items-center text-white relative
-       bg-red-900 h-fit pt-20 overflow-hidden">
+       bg-brandDark h-fit pt-20 overflow-hidden">
         <div className="container pb-8 sm:pb-0">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* text content section */}
