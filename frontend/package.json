@@ -27,6 +27,7 @@
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.9.1",
     "crypto-js": "^4.1.1",
+    "dotenv": "^16.4.5",
     "faker": "^6.6.6",
     "firebase": "^10.12.2",
     "flowbite-datepicker": "^1.2.2",

@@ -8,7 +8,7 @@ import Dashboardsection2 from '../components/SystemAdmin/Dashboardsection2'
 
 const Dashboard = () => {
   return (
-    <div className='w-full bg-secondary'>
+    <div className='w-full h-screen bg-secondary'>
 <Header/>
 <Dashboardsection1/>
 <Dashboardsection2/>

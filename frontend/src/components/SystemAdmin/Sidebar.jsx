@@ -12,8 +12,8 @@ export default function Sidebar() {
   };
 
   return (
-    <div className=" w-[50px] md:w-[50px] lg:w-[255px] h-full mb-0 pb-0  bg-brandDark">
-      <div className="selector bgbrandDark fixed w-fit  lg:w-[255px]  h-screen">
+    <div className=" w-[50px] md:w-[50px] lg:w-[255px] h-screen  bg-brandDark">
+      <div className="selector bg-brandDark fixed w-fit  lg:w-[255px]  h-screen">
         <div className="py-4 flex flex-col justify-between h-screen">
           <ul className="space-y-[18.5px]">
             <li onClick={() => setdrop(false)}>

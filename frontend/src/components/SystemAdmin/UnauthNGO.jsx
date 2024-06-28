@@ -1,54 +1,81 @@
-import "../../styles/font/font.css"
-import pfp from "../../assets/placeholder.png"
-import pfp1 from "../../assets/placeholder (1).png"
-import pfp2 from "../../assets/placeholder (2).png"
+import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
 import {
   collection,
-  doc,
   getDocs,
-  orderBy,
-  query,
+  getDoc,
+  doc,
   setDoc,
-  updateDoc,
   deleteDoc,
 } from "firebase/firestore/lite";
 import { firestore } from "../../firebase.config.jsx";
-import { useEffect } from 'react'
-
-import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import "../../styles/font/font.css";
 
 const UnauthorizedWelfares = () => {
-  // Dummy data
-  const welfares = [
-    {
-      id: 1,
-      logo: 'https://via.placeholder.com/40',
-      name: 'Welfare One',
-      email: 'contact@welfareone.com',
-      address: '123 Main St, City, Country',
-      phone: '+1234567890',
-    },
-    {
-      id: 2,
-      logo: 'https://via.placeholder.com/40',
-      name: 'Welfare Two',
-      email: 'contact@welfaretwo.com',
-      address: '456 Another St, City, Country',
-      phone: '+0987654321',
-    },
-    // Add more welfares as needed
-  ];
+  const [welfares, setWelfares] = useState([]);
 
-  const handleAccept = (id) => {
-    // Implement accept functionality here
-    console.log(`Accepted welfare with ID: ${id}`);
-  };
+  useEffect(() => {
+    const fetchWelfares = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(firestore, "ngos_pending"));
+        const welfaresList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setWelfares(welfaresList);
+      } catch (error) {
+        console.error("Error fetching welfares: ", error);
+      }
+    };
 
-  const handleReject = (id) => {
-    // Implement reject functionality here
-    console.log(`Rejected welfare with ID: ${id}`);
-  };
+    fetchWelfares();
+  }, []);
+
+  
+const handleAccept = async (id) => {
+  try {
+    const welfareDocRef = doc(firestore, "ngos_pending", id);
+    const welfareDocSnap = await getDoc(welfareDocRef); // Use getDoc here
+    if (welfareDocSnap.exists()) {
+      const welfareData = welfareDocSnap.data();
+
+      // Move to ngos collection
+      await setDoc(doc(firestore, "ngos", id), welfareData);
+
+      // Remove from ngos_pending collection
+      await deleteDoc(welfareDocRef);
+
+      console.log(`Accepted welfare with ID: ${id}`);
+      setWelfares(prevWelfares => prevWelfares.filter(welfare => welfare.id !== id));
+    } else {
+      console.log("No such document!");
+    }
+  } catch (error) {
+    console.error("Error accepting welfare: ", error);
+  }
+};
+const handleReject = async (id) => {
+  try {
+    const welfareDocRef = doc(firestore, "ngos_pending", id);
+    const welfareDocSnap = await getDoc(welfareDocRef); // Use getDoc here
+    if (welfareDocSnap.exists()) {
+      const welfareData = welfareDocSnap.data();
+
+      // Move to ngos_deleted collection
+      await setDoc(doc(firestore, "ngos_deleted", id), welfareData);
+
+      // Remove from ngos_pending collection
+      await deleteDoc(welfareDocRef);
+
+      console.log(`Rejected welfare with ID: ${id}`);
+      setWelfares(prevWelfares => prevWelfares.filter(welfare => welfare.id !== id));
+    } else {
+      console.log("No such document!");
+    }
+  } catch (error) {
+    console.error("Error rejecting welfare: ", error);
+  }
+};
 
   return (
     <div className='mx-[56px] md:mx-6 sm:mx-3 sm:pl-4 bg-secondary mt-[25px]'>
