@@ -27,7 +27,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-secondary to-secondary/90 shadow-md bg-gray-900 text-white">
+    <div className="bg-secondary text-white">
       <div className="container py-2">
         <div className="flex justify-between items-center">
           {/* Logo section */}

@@ -21,7 +21,7 @@ const Hero = () => {
                 <span
                   data-aos="zoom-out"
                   data-aos-delay="300"
-                  class="bg-clip-text text-transparent bg-costomFont font-cursive"
+                  className="bg-clip-text text-transparent bg-costomFont font-cursive"
                 >
                   Food
                 </span>{" "}
