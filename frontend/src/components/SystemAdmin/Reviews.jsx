@@ -78,12 +78,12 @@ const UnauthorizedRestaurants = () => {
   };
 
   return (
-    <div className='mx-[56px] md:mx-6 sm:mx-3 sm:pl-4 bg-secondary mt-[25px]'>
+    <div className='mx-[56px] md:mx-6 sm:mx-3 sm:pl-4 bg-white mt-24'>
       <div className="justify-between items-center w-full flex">
-        <h1 className='selector text-[#E5E5E5] text-xl my-7 font-bold'>Unauthorized Restaurants</h1>
+        <h1 className='selector text-costomFont text-3xl font-cursive my-7 font-bold'>Unauthorized Restaurants</h1>
       </div>
       <div>
-        <div className="overflow-x-auto bg-brandDark">
+        <div className="overflow-x-auto bg-costomFont rounded-xl">
           <table className="w-full sm:w-full md:w-full md:overflow-x-scroll sm:overflow-x-scroll text-left text-gray-400">
             <thead className="text-sm font-bold 2xl:text-lg selector text-[#E5E5E5] border-b border-grey-400">
               <tr className="">

@@ -45,16 +45,16 @@ function App() {
 
   return (
   
-   <div className="bg-secondary ">
+   <div className="bg-white">
    
-    <div className="flex flex-row gap-2 md:gap-6 bg-secondary ">
+    <div className="flex flex-row   ">
     <SideBarLayout />
     {/* <Container> */}
    
       <Routes>
       {/* <Route exact path="/" element={<Dashboard />} /> */}
         
-        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<Login />} />
 z        <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/users" element={<Users />} />
         <Route exact path="/orders" element={<Orders />} />
@@ -71,11 +71,6 @@ z        <Route exact path="/dashboard" element={<Dashboard />} />
    
     </div>
      
-
-  
-
-  
-  
   
   )
 }

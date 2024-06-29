@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/nawalah.png";
-import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa"; // Import icons
-import DropdownButton from 'react-bootstrap/DropdownButton';
-const Menu = [
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Button, Menu, MenuItem } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { IoRestaurant } from "react-icons/io5";
+import { MdLocalGroceryStore } from "react-icons/md";
+import { FaBuildingNgo } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+const MenuItems = [
   {
     id: 1,
     name: "Home",
@@ -21,12 +26,22 @@ const Menu = [
 ];
 
 const NavBar = () => {
+  const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleDropdown = () => setShowDropdown(!showDropdown);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,7 +55,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r h-[120px] z-10 from-secondary to-secondary/90 shadow-md border-b-2  border-b-[#d11559] text-white">
+    <div className="bg-gradient-to-r h-[120px] z-50 from-secondary to-secondary/90 shadow-md border-b-2 border-b-[#d11559] text-white relative">
       <div className="container py-8 px-4 md:px-8">
         <div className="flex justify-between items-center">
           {/* Logo section */}
@@ -62,79 +77,128 @@ const NavBar = () => {
             className="hidden md:flex items-center gap-6"
           >
             <ul className="flex font-semibold text-white items-center gap-4">
-              {Menu.map((menu) => (
-                <li key={menu.id}>
+              {MenuItems.map((menuItem) => (
+                <li key={menuItem.id}>
                   <a
-                    href={menu.link}
+                    href={menuItem.link}
                     className="text-lg py-2 px-4 text-white/70 hover:text-white duration-200"
                   >
-                    {menu.name}
+                    {menuItem.name}
                   </a>
                 </li>
               ))}
             </ul>
 
-            <div className="relative font-semibold">
-              <button
-                onClick={toggleDropdown}
-                className="bg-[#f10057] hover:bg-[#f10057]/70 duration-200 text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+            {/* Material-UI Dropdown */}
+            <div className="relative">
+              <Button
+                onClick={handleMenuOpen}
+                variant="contained"
+                sx={{
+                  backgroundColor: "#f10057",
+                  "&:hover": {
+                    backgroundColor: "#f10057",
+                    opacity: 0.7,
+                  },
+                }}
+                className="text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+                endIcon={<ExpandMoreIcon />}
               >
                 For Business
-                <FaChevronDown />
-              </button>
+              </Button>
 
-              {showDropdown && (
-                <div className="mt-2 absolute bg-white text-[#f10057] rounded-lg shadow-lg w-[170px] border-2 border-[#f10057] animate-fade-in">
-                  <ul className="py-2">
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-b-[#f10057]">Restaurants</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-b-[#f10057]">Grocery Stores</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Welfares</li>
-                  </ul>
-                </div>
-              )}
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                className="mt-2 z-50"
+              >
+                <MenuItem  onClick={()=>{
+                  handleMenuClose()
+                  navigate("/HotelRegister")
+                }}>
+                  <IoRestaurant /> <p className="pl-2">Restaurants</p>
+                </MenuItem>
+                <MenuItem onClick={handleMenuClose}>
+                  <MdLocalGroceryStore /> <p className="pl-2">Grocery Stores</p>{" "}
+                </MenuItem>
+                <MenuItem  onClick={()=>{
+                  handleMenuClose()
+                  navigate("/WelfareRegister")
+                }}>
+                  <FaBuildingNgo /> <p className="pl-2">Welfares</p>
+                </MenuItem>
+              </Menu>
             </div>
           </div>
 
           {/* Mobile Menu Icon */}
-          <button className="md:hidden text-white" onClick={toggleMenu}>
+          <button
+            className="md:hidden text-white bg-brandDark"
+            onClick={toggleMenu}
+          >
             {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-2">
+          <div className="md:hidden mt-2 p-10 rounded-b-lg bg-darkBlue">
             <ul className="flex flex-col font-semibold items-start gap-4">
-              {Menu.map((menu) => (
-                <li key={menu.id}>
+              {MenuItems.map((menuItem) => (
+                <li key={menuItem.id}>
                   <a
-                    href={menu.link}
+                    href={menuItem.link}
                     className="text-lg py-2 px-4 text-white/70 hover:text-white duration-200 block"
                   >
-                    {menu.name}
+                    {menuItem.name}
                   </a>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-4">
-              <button
-                onClick={toggleDropdown}
-                className="bg-[#f10057] font-semibold hover:bg-[#f10057]/70 duration-200 text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+            {/* Material-UI Dropdown */}
+            <div className="mt-4 ">
+              <Button
+                onClick={handleMenuOpen}
+                variant="contained"
+                sx={{
+                  backgroundColor: "#f10057",
+                  "&:hover": {
+                    backgroundColor: "#f10057",
+                    opacity: 0.7,
+                  },
+                }}
+                className="text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+                endIcon={<ExpandMoreIcon />}
               >
                 For Business
-                <FaChevronDown />
-              </button>
+              </Button>
 
-              {showDropdown && (
-                <div className="mt-2 bg-white text-[#f10057] rounded-lg border-2 border-[#f10057] shadow-lg w-full animate-fade-in">
-                  <ul className="py-2">
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-[#f10057]">Restaurants</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-[#f10057]">Grocery Stores</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Welfares</li>
-                  </ul>
-                </div>
-              )}
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                PaperProps={{
+                  style: {
+                    width: "250px", // Increase menu width here
+                  },
+                }}
+                className="mt-2"
+              >
+                <MenuItem  onClick={()=>{
+                  handleMenuClose()
+                  navigate("/HotelRegister")
+                }}> Restaurants</MenuItem>
+                <MenuItem onClick={()=>{
+                  handleMenuClose()
+                  navigate("/HotelRegister")
+                }}>Grocery Stores</MenuItem>
+                <MenuItem onClick={()=>{
+                  handleMenuClose()
+                  navigate("/HotelRegister")
+                }}>Welfares</MenuItem>
+              </Menu>
             </div>
           </div>
         )}

@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <div className='w-full h-full sm:w-full sm:mx-4'>
         <div className='grid grid-cols-2 lg:grid lg:grid-cols-2  md:grid md:grid-cols-2 sm:flex sm:flex-col w-full'>
-            <div className='flex flex-col w-full h-screen justify-center align-middle items-center bg-brandDark'>
+            <div className='flex flex-col w-full h-screen justify-center align-middle items-center bg-costomFont'>
            
           
            <h1 className='selector font-bold text-[28px] text-[#ffffff]'>Admin Login</h1>
