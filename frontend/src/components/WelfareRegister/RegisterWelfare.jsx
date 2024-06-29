@@ -3,8 +3,11 @@ import axios from "axios";
 import bgNawalah from "../../assets/bgNawalah.png";
 import { motion } from "framer-motion";
 import AuthApi from "../../API/AuthApi/index";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const WelfareRegistration = () => {
+  const navigate = useNavigate();
   const [location, setLocation] = useState("");
   const [logoImage, setLogoImage] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -276,6 +279,13 @@ const WelfareRegistration = () => {
                 className="w-full py-2 bg-black text-white rounded-md font-medium cursor-pointer transition-transform transform hover:scale-95"
                 disabled={uploading}
               />
+            </div>
+            <div className="text-center">
+              <p>Already Have any Account? <span 
+              onClick={()=>{
+                navigate("../WelfareLogin")
+              }}
+              className="font-bold text-darkBlue">Login</span></p>
             </div>
           </form>
         </div>

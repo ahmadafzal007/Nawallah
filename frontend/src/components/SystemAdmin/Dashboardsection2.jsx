@@ -242,22 +242,22 @@ const getMonthLabel = (monthNumber) => {
 const monthlyChartData2022 = transformOrderData(orders);
       return (
         <div className='w-full'>
-<div className=' mx-[25px]  my-[25px] lg:w-[96%] w-[80%] py-10 rounded-[14px] bg-brandDark '>
+<div className=' mx-[25px]  my-[25px] lg:w-[96%] w-[80%] py-10 rounded-[14px] bg-costomFont '>
 <div className='flex px-[80px] py-[25px] flex-row justify-between'>
-<h1 className='text-[#E5E5E5] selector text-[22px] font-bold'>Total Revenue</h1>
+<h1 className='text-white selector text-[22px] font-bold'>Total Revenue</h1>
 <div className='flex flex-row gap-6'>
     <div className='flex flex-row gap-1'>
         <div><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
   <circle cx="7.5" cy="7.5" r="7.5" fill="#2D9CDB"/>
 </svg></div>
-        <h1 className='text-[#E5E5E5] selector text-sm font-normal'>2023</h1>
+        <h1 className='text-white selector text-sm font-normal'>2023</h1>
     </div>
     <div className='flex flex-row'>
     <div className='flex flex-row gap-1'>
         <div><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
   <circle cx="7.5" cy="7.5" r="7.5" fill="#FF6154"/>
 </svg></div>
-        <h1 className='text-[#E5E5E5] selector text-sm font-normal'>2024</h1>
+        <h1 className='text-white selector text-sm font-normal'>2024</h1>
     </div>
 </div>
 </div>
@@ -279,14 +279,18 @@ const monthlyChartData2022 = transformOrderData(orders);
               }}
             >
               <XAxis dataKey="month" />
-              <YAxis />
+              <YAxis 
+  axisLine={{ stroke: 'white' }} // Example: Red axis line
+  tickLine={{ stroke: 'white' }} // Example: Red tick lines
+  tick={{ fill: 'white' }} // Example: Red tick labels
+/>
               <Tooltip />
              
               <Line
                 type="monotone"
                 strokeWidth={4}
                 dataKey="totalPrice2024"
-                stroke="#FF6154"
+                stroke="white"
                 activeDot={{ r: 8 }}
                 // data={monthlyChartData.filter(data => data.year == 2023)}
     
@@ -296,7 +300,7 @@ const monthlyChartData2022 = transformOrderData(orders);
                <Line
                 type="monotone"
                 dataKey="totalPrice2023"
-                stroke="#2D9CDB"
+                stroke="white"
                 strokeWidth={4}
                 // data={monthlyChartData.filter(data => data.year == 2022)}
     

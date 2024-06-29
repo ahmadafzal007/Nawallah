@@ -25,7 +25,7 @@ const WelcomePage = () => {
   }, []);
   return (
     <div   className="gradient text-gray-900  duration-200 overflow-x-hidden">
-      <div className='z-10'>
+      <div className='z-40'>
       <NavBar/>
       </div>
       <div className='z-30'>

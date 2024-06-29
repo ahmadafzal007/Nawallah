@@ -24,29 +24,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { PaginationItem } from '@mui/material';
 import { DeleteOutline, Diversity1Rounded, DriveFileRenameOutline, DriveFileRenameOutlineOutlined } from '@mui/icons-material';
-const staticdata = [
-        {
-          id: 1,
-        },
-        {
-          id: 1,
-        },
-        {
-          id: 1,
-        },
-        {
-          id: 1,
-        },
-        {
-          id: 2,
-        },
-        {
-          id: 3,
-        },
-       
-       
-      ];
-    
+
 const Order = () => {
 
   const [order, setorder] = useState([]);
@@ -141,6 +119,7 @@ const getAllOrders = async () => {
   
    
   };
+  
 
   const [updateData, setUpdateData] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
@@ -167,11 +146,11 @@ const currentItems = filtereduser?.slice(startIndex, endIndex);
 const totalEntries = filtereduser?.length;
 
   return (
-    <div className='mx-[56px] md:mx-6 sm:mx-3 sm:pl-4 bg-secondary mt-[25px] '>
+    <div className='mx-[56px] md:mx-6 sm:mx-3 sm:pl-4  mt-24 '>
        <div className="justify-between items-center  w-full flex">
-       <h1 className='selector text-[#E5E5E5] text-xl my-7 font-bold'>All Orders</h1>
+       <h1 className='selector text-costomFont text-3xl font-cursive my-7 font-bold'>All Orders</h1>
    
-       <div className='flex gap-4  sm:hidden items-center px-3  my-7 rounded-lg bg-brandDark w-[406px] h-12 shadow-[#5829291a]'>
+       <div className='flex gap-4  sm:hidden items-center px-3  my-7 rounded-lg bg-costomFont w-[406px] h-12 shadow-[#5829291a]'>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" >
   <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#BDBDBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M22 22L20 20" stroke="#BDBDBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -182,7 +161,7 @@ const totalEntries = filtereduser?.length;
     </div>
     </div>
       <div>
-      <div class="overflow-x-auto bg-brandDark ">
+      <div class="overflow-x-auto bg-costomFont rounded-xl ">
               <table class="w-full  sm:w-full md:w-full md:overflow-x-scroll sm:overflow-x-scroll text-left  text-gray-400 ">
                 <thead class="text-sm font-bold 2xl:text-lg selector  text-[#E5E5E5]   border-b border-grey-400">
                   <tr className="">

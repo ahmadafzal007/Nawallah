@@ -36,12 +36,12 @@ const Welfare = () => {
   };
 
   return (
-    <div className="mx-[56px] md:mx-6 sm:mx-3 sm:pl-4 bg-secondary mt-[25px]">
-      <h1 className="selector text-[#E5E5E5] text-xl my-7 font-bold">Welfares</h1>
+    <div className="mx-[56px] md:mx-6 sm:mx-3 sm:pl-4  mt-24 bg-white">
+      <h1 className="selector text-costomFont font-cursive  text-3xl my-7 font-bold">Welfares</h1>
 
       {/* Welfare Table */}
-      <div className="overflow-x-auto bg-brandDark">
-        <table className="w-full text-left text-gray-400">
+      <div className="overflow-x-auto rounded-xl bg-costomFont">
+        <table className="w-full text-left text-">
           <thead className="text-sm font-bold selector text-[#E5E5E5] border-b border-grey-400">
             <tr>
               <th scope="col" className="pl-6 py-3">Logo</th>
