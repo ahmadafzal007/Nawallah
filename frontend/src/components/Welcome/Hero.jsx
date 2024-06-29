@@ -6,8 +6,7 @@ const Hero = () => {
   return (
     <div className="-z-10 relative">
     {/* min-h-[550px] sm:min-h-[600px]  */}
-      <div className=" flex justify-center items-center text-white relative
-        bg-secondary pt-20 h-fit pt-10 ">
+      <div className=" flex justify-center items-center text-white relative  bg-secondary pt-20 h-fit pt-10 ">
         <div className="container pb-8 sm:pb-0">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* text content section */}
@@ -46,7 +45,7 @@ const Hero = () => {
             <div
               data-aos="zoom-in"
               data-aos-duration="300"
-              className="min-h-[450px] flex justify-center items-center relative order-1 sm:order-2"
+              className="min-h-[450px]  flex justify-center items-center relative order-1 sm:order-2"
             >
               <img
                 data-aos-once="true"
