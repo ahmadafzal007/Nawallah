@@ -53,8 +53,9 @@ function App() {
    
       <Routes>
       {/* <Route exact path="/" element={<Dashboard />} /> */}
-       
-        <Route exact path="/dashboard" element={<Dashboard />} />
+        
+        {/* <Route path="/" element={<Login />} /> */}
+z        <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/users" element={<Users />} />
         <Route exact path="/orders" element={<Orders />} />
         <Route exact path="/welfare" element={<WelfareTable />} />      

@@ -10,9 +10,8 @@ import Footer from '../components/Welcome/Footer';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SDGIcons from '../components/Welcome/SDGIcons';
-
-  
-
+import Caption from '../components/Welcome/caption';
+import AboutUs from '../components/Welcome/aboutUs';
 
 const WelcomePage = () => {
   React.useEffect(() => {
@@ -26,13 +25,20 @@ const WelcomePage = () => {
   }, []);
   return (
     <div   className="gradient text-gray-900  duration-200 overflow-x-hidden">
+      <div className='z-10'>
       <NavBar/>
+      </div>
+      <div className='z-30'>
       <Hero/>
+      </div>
       <Services/>
-      {/* <AppStore/> */}
-      <Banner/>
+      {/* <Banner/> */}
+      <Caption/>
       <SDGIcons/>
-      <Testimonials/>
+      {/* <AppStore/> */}
+
+      {/* <Testimonials/> */}
+      <AboutUs/>
       <Footer/>
     </div>
   )

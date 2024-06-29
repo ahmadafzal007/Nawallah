@@ -17,13 +17,13 @@ const TestimonialData = [
   {
     id: 3,
     name: "Abdullah Shabbir",
-    text: "The way they are managing the food wastage, It's superb.",
+    text: "\nThe way they are managing the food wastage, It's superb.",
     img: "https://picsum.photos/104/104",
   },
   {
     id: 5,
-    name: "Imran Khan",
-    text: "Nawahla is making a real change in our society.",
+    name: "Lana Del Ray",
+    text: "\nNawahla is making a real change in our society.",
     img: "https://picsum.photos/103/103",
   },
 ];
@@ -74,7 +74,7 @@ const Testimonials = () => {
         <div className="mb-10">
           <h1
             data-aos="fade-up"
-            className="text-center text-4xl font-bold font-cursive"
+            className="text-center text-6xl text-[#f10057] font-bold font-cursive"
           >
             Customer Reviews
           </h1>

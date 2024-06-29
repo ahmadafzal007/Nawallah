@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/nawalah.png";
 import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa"; // Import icons
-
+import DropdownButton from 'react-bootstrap/DropdownButton';
 const Menu = [
   {
     id: 1,
@@ -12,6 +12,11 @@ const Menu = [
     id: 2,
     name: "Services",
     link: "/#services",
+  },
+  {
+    id: 3,
+    name: "About",
+    link: "/#about",
   },
 ];
 
@@ -35,8 +40,8 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-secondary to-secondary/90 shadow-md   text-white">
-      <div className="container mx-auto py-8 px-4 md:px-8">
+    <div className="bg-gradient-to-r h-[120px] z-10 from-secondary to-secondary/90 shadow-md border-b-2  border-b-[#d11559] text-white">
+      <div className="container py-8 px-4 md:px-8">
         <div className="flex justify-between items-center">
           {/* Logo section */}
           <div data-aos="fade-down" data-aos-once="true">
@@ -56,7 +61,7 @@ const NavBar = () => {
             data-aos-delay="300"
             className="hidden md:flex items-center gap-6"
           >
-            <ul className="flex items-center gap-4">
+            <ul className="flex font-semibold text-white items-center gap-4">
               {Menu.map((menu) => (
                 <li key={menu.id}>
                   <a
@@ -69,21 +74,21 @@ const NavBar = () => {
               ))}
             </ul>
 
-            <div className="relative">
+            <div className="relative font-semibold">
               <button
                 onClick={toggleDropdown}
-                className="bg-primary/70 hover:bg-primary duration-200 text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+                className="bg-[#f10057] hover:bg-[#f10057]/70 duration-200 text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
               >
                 For Business
                 <FaChevronDown />
               </button>
 
               {showDropdown && (
-                <div className="absolute mt-2 bg-white text-gray-900 rounded-lg shadow-lg w-64 z-10 animate-fade-in">
+                <div className="mt-2 absolute bg-white text-[#f10057] rounded-lg shadow-lg w-[170px] border-2 border-[#f10057] animate-fade-in">
                   <ul className="py-2">
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Section 1</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Section 2</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Section 3</li>
+                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-b-[#f10057]">Restaurants</li>
+                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-b-[#f10057]">Grocery Stores</li>
+                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Welfares</li>
                   </ul>
                 </div>
               )}
@@ -99,7 +104,7 @@ const NavBar = () => {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-2">
-            <ul className="flex flex-col items-start gap-4">
+            <ul className="flex flex-col font-semibold items-start gap-4">
               {Menu.map((menu) => (
                 <li key={menu.id}>
                   <a
@@ -115,18 +120,18 @@ const NavBar = () => {
             <div className="mt-4">
               <button
                 onClick={toggleDropdown}
-                className="bg-primary/70 hover:bg-primary duration-200 text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+                className="bg-[#f10057] font-semibold hover:bg-[#f10057]/70 duration-200 text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
               >
                 For Business
                 <FaChevronDown />
               </button>
 
               {showDropdown && (
-                <div className="mt-2 bg-white text-gray-900 rounded-lg shadow-lg w-full animate-fade-in">
+                <div className="mt-2 bg-white text-[#f10057] rounded-lg border-2 border-[#f10057] shadow-lg w-full animate-fade-in">
                   <ul className="py-2">
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Section 1</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Section 2</li>
-                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Section 3</li>
+                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-[#f10057]">Restaurants</li>
+                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b-2 border-[#f10057]">Grocery Stores</li>
+                    <li className="px-4 py-3 hover:bg-gray-100 cursor-pointer">Welfares</li>
                   </ul>
                 </div>
               )}

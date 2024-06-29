@@ -20,17 +20,17 @@ const FooterLinks = [
   },
 ];
 
-const bgImage = {
+// const bgImage = {
 
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  minHeight: "300px",
-  width: "100%",
-};
+//   backgroundPosition: "center",
+//   backgroundRepeat: "no-repeat",
+//   backgroundSize: "cover",
+//   minHeight: "300px",
+//   width: "100%",
+// };
 const Footer = () => {
   return (
-    <div style={bgImage} className=" text-white bg-secondary">
+    <div className=" text-white bg-secondary">
       <div className="min-h-[400px]">
         <div className="container grid md:grid-cols-3 pb-20 pt-5">
           {/* company details */}
@@ -48,7 +48,7 @@ const Footer = () => {
             <a
               href="https://www.youtube.com/channel/UC1H-a1MKEFXRiFlGNLcy7gQ"
               target="_blank"
-              className="inline-block bg-[#3d2517] py-2 px-4 mt-5 text-sm rounded-full"
+              className="inline-block bg-[#f10057] py-2 px-4 mt-5 text-sm rounded-full"
             >
               Visit our YouTube Channel
             </a>
