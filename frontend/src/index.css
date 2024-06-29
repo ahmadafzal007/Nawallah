@@ -41,12 +41,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background:gre en; */
+  background-color: #f5eee8;
   height: fit-content;
 } 
 
 .gradient {
-  background: linear-gradient(to bottom right, #fff7ad, #ffa9f9);
+  /* background: linear-gradient(to bottom right, #fff7ad, #ffa9f9); */
 
+    background-color: "#f5eee8" ;
 }
 
 code {
