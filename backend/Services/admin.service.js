@@ -1,5 +1,6 @@
 const db = require('../Db/firebaseAdmin'); // Import Firestore instance
 const admin = require('firebase-admin');
+const transporter = require('../Utils/mailConfig');
 
 const adminService = {
     authorizeRestaurant: async (restaurantId) => {
@@ -105,7 +106,106 @@ const adminService = {
         }
     },
 
+          
+          sendMail: async (name, email, subject, message) => {
+            console.log(process.env.PASSWORD);
+            try {
+                const mailOptions = {
+                    from: process.env.EMAIL, // sender address
+                    to: process.env.EMAIL, // list of receivers
+                    subject: subject, // Subject line
+                    html: `
+                        <html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      background-color: #4CAF50;
+      padding: 10px;
+      text-align: center;
+      color: white;
+      border-radius: 10px 10px 0 0;
+    }
+    .content {
+      padding: 20px;
+      color: #333333;
+    }
+    .content h3 {
+      color: #4CAF50;
+    }
+    .content ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .content ul li {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      border: 1px solid #eeeeee;
+    }
+    .footer {
+      text-align: center;
+      padding: 10px;
+      color: #777777;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>New Contact Request</h2>
+    </div>
+    <div class="content">
+      <p>You have a new contact request.</p>
+      <h3>Contact Details</h3>
+      <ul>
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Email:</strong> ${email}</li>
+        <li><strong>Subject:</strong> ${subject}</li>
+        <li><strong>Message:</strong> ${message}</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <p>This email was sent from your website's contact form.</p>
+    </div>
+  </div>
+</body>
+</html>
+
+                    `
+                };
     
+                const info = await transporter.sendMail(mailOptions);
+                console.log('Email sent: ', info.response);
+                return {
+                    success: true,
+                    message: 'Thanks for contacting us. We will get back to you shortly'
+                };
+            } catch (error) {
+                console.log(error);
+                return {
+                    success: false,
+                    message: 'Something went wrong. Try again later'
+                };
+            }
+
+    
+}
 }
 
 module.exports = adminService;

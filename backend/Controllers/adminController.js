@@ -42,7 +42,16 @@ const AdminController = {
         }
     },
 
-    
+    async sendMail (req,res,next){
+        try {
+            const {name,email,subject,message} = req.body;
+            const result = await adminService.sendMail(name,email,subject,message);
+            res.status(200).send({message:"Mail Sent"});
+        } catch (error) {
+            res.status(400).send({error:error});
+        }
+    }
+
 }
 
 module.exports = AdminController;
