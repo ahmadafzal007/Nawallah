@@ -14,7 +14,7 @@ const WelfareNav = () => {
 
  const logout = () => {
   localStorage.clear();
-  navigate("/WelfareLogin");
+  navigate("/");
 };
 
  useEffect(()=>{

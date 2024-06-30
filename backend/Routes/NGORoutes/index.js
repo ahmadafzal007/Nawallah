@@ -15,7 +15,7 @@ const {AcceptDonation,
 router.use('/auth', authRoutes);
 
 router.post('/acceptDonation', AcceptDonation);
-router.get('/getAcceptedDonations', getAcceptedDonations);
+router.post('/getAcceptedDonations', getAcceptedDonations);
 router.get('/getAllDonations', getAllDonations);
 
 

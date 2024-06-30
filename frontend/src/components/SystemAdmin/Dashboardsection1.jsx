@@ -14,49 +14,46 @@ import {
   deleteDoc,
 } from "firebase/firestore/lite";
 import { firestore } from "../../firebase.config.jsx";
+import AdminController from "../../API/Admin.js";
 
 const Dashboardsection1 = () => {
   const [order, setorder] = useState();
-  const getAllOrders = async () => {
-    const addOrder = query(collection(firestore, "orders"));
-    const getData = await getDocs(addOrder);
-    // console.log(TableHeader)
+  const [donations  ,setDonations] = useState();
+  const [revenue, setRevenue] = useState();
 
-    setorder(getData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
-  const getorders = (id) => {
-    var counter = 0;
+  
 
-    const counts = order?.map((val, ind) => counter++);
+  const getTotalDonations = async()=>{
+      try {
+          const response = await AdminController.getTotalDonations();
+          console.log("response",response);
+          setDonations(response.TotalDonations);
+      } catch (error) {
+          console.log("error",error);
+      }
+  }
 
-    return counter;
-  };
+  const getTotalOrders = async()=>{
+      try {
+          const response = await AdminController.getTotalOrders();
+          console.log("response",response);
+          setorder(response.TotalOrders);
+          setRevenue(response.TotalPrice);
+      } catch (error) {
+          console.log("error",error);
+      }
+  }
 
-  const getcompleteorders = (id) => {
-    var counter = 0;
-
-    const counts = order?.map((val, ind) =>
-      val.status == "Fulfilled" ? counter++ : ""
-    );
-
-    return counter;
-  };
-
-  const getpaymentorders = (id) => {
-    var pay = 0;
-
-    const counts = order?.map((val, ind) =>
-      val.status == "Fulfilled" ? (pay += val.totalPrice) : ""
-    );
-
-    return pay.toFixed(1);
-  };
+ 
+  
   useEffect(() => {
-    getAllOrders();
+ 
+    getTotalDonations();
+    getTotalOrders();
   }, []);
   return (
     <div>
-      <div className="grid  md:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-4 mx-[25px] my-[17px]  md:gap-5  ">
+      <div className="grid  md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4 mx-[25px] my-[17px]  md:gap-5  ">
         <div class=" flex flex-row rounded-xl w-[85%] lg:w-[100%]   justify-center items-center  shadow-md bg-costomFont ">
           <div>
             <div className="flex flex-row  gap-8 lg:gap-4 justify-center items-center  ">
@@ -103,7 +100,7 @@ const Dashboardsection1 = () => {
               </div>
               <div className="flex flex-col py-[35px] md:py-8 sm:py-8 pr-16 lg:pr-8 md:pr-4 sm:pr-4">
                 <h1 className=" text-[46px] selector  font-bold   text-white">
-                  {getpaymentorders()}
+                  {revenue}
                 </h1>
 
                 <p class="text-white selector text-lg font-normal  ">
@@ -206,7 +203,7 @@ const Dashboardsection1 = () => {
               </div>
               <div className="flex flex-col py-[35px] md:py-8 sm:py-8 pr-16 lg:pr-8 md:pr-4 sm:pr-4">
                 <h1 className=" text-[46px] selector  font-bold   text-white">
-                  {getorders()}
+                 {order}
                 </h1>
 
                 <p class="text-white selector text-lg font-normal  ">
@@ -292,11 +289,11 @@ const Dashboardsection1 = () => {
               </div>
               <div className="flex flex-col py-[35px] md:py-8 sm:py-8 pr-16 lg:pr-8 md:pr-4 sm:pr-4 ">
                 <h1 className=" text-[46px] selector  font-bold   text-white">
-                  {getcompleteorders()}
+                 {donations}
                 </h1>
 
                 <p class="text-white  selector text-lg font-normal  ">
-                  Completed Orders
+                  Total Donations
                 </p>
                 <div className="flex flex-row gap-2 mt-2">
                   <div className=" rounded-full p-1 align-middle bg-[#ff5b5b26] justify-center items-center">
@@ -324,7 +321,7 @@ const Dashboardsection1 = () => {
             </div>
           </div>
         </div>
-        <div class=" flex flex-row rounded-xl  w-[85%] lg:w-[100%]  justify-center items-center  shadow-md bg-costomFont ">
+        {/* <div class=" flex flex-row rounded-xl  w-[85%] lg:w-[100%]  justify-center items-center  shadow-md bg-costomFont ">
           <div>
             <div className="flex flex-row  gap-8 lg:gap-4 justify-center items-center  ">
               <div className="justify-center pl-9 md:pl-0 sm:pl-0 items-center">
@@ -401,7 +398,7 @@ const Dashboardsection1 = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

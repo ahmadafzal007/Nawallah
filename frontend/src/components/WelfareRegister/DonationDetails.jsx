@@ -4,6 +4,7 @@ import "antd/dist/reset.css"; // Import Ant Design styles
 import "./DonationDetails.css"; // Import the CSS file for custom styles
 import { FaWeight } from "react-icons/fa";
 import {   MenuBookOutlined, PeopleAltOutlined} from "@mui/icons-material";
+import NgoController from "../../API/Ngo"
 
 const { Title } = Typography;
 
@@ -14,41 +15,85 @@ const DonationDetails = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [view, setView] = useState("available"); // State to manage view
 
-  useEffect(() => {
-    // Set dummy data
-    const dummyDonations = [
-      {
-        id: 1,
-        restaurantName: "Ramada",
-        foodDetails:
-          "Pizza, Burger, Tons of Biryani, 15 kg chicken haleem, 35 pieces of roast ",
-        restaurantAddress: "123 Main St, City A",
-        phoneNumber: "123-456-7890",
-      },
-      {
-        id: 2,
-        restaurantName: "Pearl Continental",
-        foodDetails: "Sushi, Ramen",
-        restaurantAddress: "456 Elm St, City B",
-        phoneNumber: "234-567-8901",
-      },
-      {
-        id: 3,
-        restaurantName: "Serena",
-        foodDetails: "Tacos, Burritos",
-        restaurantAddress: "789 Oak St, City C",
-        phoneNumber: "345-678-9012",
-      },
-    ];
-    setDonations(dummyDonations);
-  }, []);
 
-  const handleAccept = (id) => {
+  useEffect(() => {
+    console.log("I am getting called");
+  
+    const fetchData = async () => {
+      try {
+        const response = await NgoController.getAllDonations();
+        if (response.success) {
+          console.log(response.donations);
+          const donationData = response.donations.map((item) => {
+            return {
+              id: item.id,
+              restaurantName: item.restaurantName,
+              foodDetails: item.description,
+              restaurantAddress: item.restaurantLocation,
+              phoneNumber: "123-456-7890",
+            };
+          });
+  
+          console.log("donation data", donationData);
+          setDonations(donationData);
+        } else {
+          console.log("Failed to fetch donations");
+        }
+      } catch (error) {
+        console.error("Error fetching donations:", error);
+      }
+    };
+    const fetchAcceptedData = async () => {
+      try {
+        const email = JSON.parse(localStorage.getItem("ngo")).email;
+        const response = await NgoController.getAcceptedDonations(email);
+        if (response.success) {
+          console.log(response.acceptedDonations);
+          const acceptedData = response.acceptedDonations.map((item) => {
+            return {
+              id: item.id,
+              restaurantName: item.restaurantName,
+              foodDetails: item.description,
+              restaurantAddress: item.restaurantLocation,
+              phoneNumber: "123-456-7890",
+            };
+          });
+  
+          console.log("accepted data", acceptedData);
+          setAcceptedDonations(acceptedData);
+        } else {
+          console.log("Failed to fetch accepted donations");
+        }
+      } catch (error) {
+        console.error("Error fetching accepted donations:", error);
+      }
+    }
+  
+    fetchData();
+    fetchAcceptedData();
+    
+  }, []); // Add dependencies if needed, e.g., [] for running once on mount
+  
+
+  
+
+  const handleAccept = async ( donationId) => {
+    console.log("donationId", donationId);
+    const email = JSON.parse(localStorage.getItem("ngo")).email;
+    console.log("ngo email", email);
     // Logic to accept the donation
-    const acceptedDonation = donations.find(donation => donation.id === id);
+    const acceptedDonation = donations.find(donation => donation.id === donationId);
     setAcceptedDonations([...acceptedDonations, acceptedDonation]);
-    setDonations(donations.filter(donation => donation.id !== id));
+    setDonations(donations.filter(donation => donation.id !== donationId));
     message.success("Donation accepted");
+    await NgoController.acceptOrder(email,donationId).then((response)=>{
+      console.log(response);
+    }).catch((error)=>{
+      console.log(error);
+    })
+
+
+ 
   };
 
   const handleReject = (id) => {
