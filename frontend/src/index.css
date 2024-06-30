@@ -24,3 +24,34 @@
 html {
   scroll-behavior: smooth;
 }
+
+
+
+@font-face {
+  font-family: "Recoleta";
+  src: local("Recoleta"),
+    url("./styles/font/recoleta.otf") format("opentype");
+  font-weight: normal;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* background:gre en; */
+  background-color: #f5eee8;
+  height: fit-content;
+} 
+
+.gradient {
+  /* background: linear-gradient(to bottom right, #fff7ad, #ffa9f9); */
+
+    background-color: "#f5eee8" ;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

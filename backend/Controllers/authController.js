@@ -9,21 +9,25 @@ const authController = {
         try {
           const restaurant = req.body;
           const email = restaurant.email;
-          try{
-                if (restaurantService.emailExists(email)){
+          console.log("request recived",req.body)
+  
+        
+                if (await restaurantService.emailExists(email)){
+                  console.log("inside if")
+                  // console.log(restaurantService.emailExists(email))
                     res.status(403).json({
                         "messsage":"Email already Exists"
-                    })
+                    }) 
+                    return ;
                 }
-          }catch(error){
-            next(error)
-          }
-          const restaurantId = await restaurantService.addRestaurant(restaurant);
-
-        
-          res.status(201).send({ id: restaurantId });
+                else{
+                const restaurantId = await restaurantService.createRestaurant(restaurant);
+                res.status(201).send({ id: restaurantId });
+                }
+      
         } catch (error) {
-          res.status(400).send({ error: error.message });
+          console.log('auth controller ' , error);
+          res.status(400).send({ error: "Cannot register restaurant" });
         }
       },
 
@@ -32,30 +36,34 @@ const authController = {
     },
 
     async registerNgo(req, res) {
+      console.log("request recived /register/ngo",req.body)
       try {
           const ngo = req.body;
           const email = ngo.email;
-          try {
+          
               if (await ngoService.emailExists(email)) {
                   res.status(403).json({
                       message: 'Email already exists'
                   });
+                  return ;
               }
-          } catch (error) {
-              throw new Error(error);
-          }
-          
-          const result = await ngoService.createNgo(ngo);
-          res.status(201).send({ id: result.id });
+
+              const result = await ngoService.createNgo(ngo);
+              res.status(201).send({ id: result.id });
+              return;
+
+        
       } catch (error) {
-          res.status(400).send({ error: error.message });
+          console.log('auth controller ' , error);
+          res.status(400).send({ error: "Cannot register NGO"});
       }
   },
-  async verifyNgo(req, res) {
+  async  verifyNgo(req, res) {
     try {
-        const { idToken } = req.body;
-        const decodedToken = await ngoService.verifyToken(idToken);
-        res.status(200).send({ uid: decodedToken.uid });
+        const { email,password } = req.body;
+        const response = await ngoService.verifyNgo(email,password);
+        
+        res.status(200).send({ response });
     } catch (error) {
         res.status(400).send({ error: error.message });
     }

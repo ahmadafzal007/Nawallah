@@ -16,7 +16,7 @@ const NGODashBoard = () => {
   }, []);
 
   return(
-    <div  className="bg-brandDark h-screen dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
+    <div  className="bg-white h-screen dark:bg-gray-900 dark:text-white duration-200 overflow-x-hidden">
     <WelfareNav/>
     <DonationDetail/>
     </div>
