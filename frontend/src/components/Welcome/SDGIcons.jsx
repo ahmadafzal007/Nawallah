@@ -121,7 +121,7 @@ const SDGIcons = () => {
         </h1>
       </div>
       <div className="flex flex-col justify-center items-center  w-full">
-        <div className="scene flex justify-between space-x-4  mb-20 perspective-800">
+        <div className="scene flex flex-col lg:flex-row justify-between space-x-4  mb-20 perspective-800">
           <Card 
             frontImage={img1}
             backText="End poverty in all its forms everywhere."

@@ -29,10 +29,10 @@ const Login = () => {
     <div className="w-full h-full sm:w-full ">
       <div className="grid grid-cols-1   lg:grid-cols-2   md:grid-cols-1  w-full">
         <div id="#form" className="flex flex-col w-full h-screen justify-center align-middle items-center bg-[#d11559]">
-          <h1 className="selector font-bold text-[28px] text-[#ffffff]">
+          <h1 className="selector font-bold font-serif text-[28px] text-[#ffffff]">
             Admin Login
           </h1>
-          <p className="selector  items-center justify-center font-normal text-base text-white">
+          <p className="text-center font-serif text-base text-white">
             Use your credentials below and login to your account
           </p>
 

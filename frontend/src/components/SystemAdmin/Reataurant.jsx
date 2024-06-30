@@ -602,7 +602,7 @@ const Reataurant = () => {
   };
 
   return (
-    <div className="lg:mx-[56px] md:mx-6 mx-4 px-4 mt-24 bg-white">
+    <div className="ml-[56px] mr-2 md:mx-6 sm:mx-3 sm:pl-4  mt-24 bg-white">
       <div className="justify-end items-end w-full flex ">
         {/* <div className="md:flex gap-4  hidden items-center px-3  my-7 rounded-lg bg-white border border-costomFont w-[406px] h-12 shadow-[#0000001a]">
           <svg

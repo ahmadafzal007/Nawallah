@@ -35,7 +35,7 @@ const ContactForm = () => {
     }} >
 
 
-      <form className="max-w-lg mx-auto mb-12 p- bg-transparent">
+      <form className="md:max-w-lg md:mx-auto mx-16  mb-12  bg-transparent">
       <div className="text-center ">
        
             <h1 className="text-6xl  text-[#f10057] font-bold font-cursive mb-20">
