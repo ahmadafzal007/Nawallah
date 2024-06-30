@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="relative z-10">
-      {/* min-h-[550px] sm:min-h-[600px]  */}
-      <div className="flex justify-center items-center text-white relative bg-secondary pt-20 h-fit ">
+    <div className="relative">
+    {/* min-h-[550px] sm:min-h-[600px]  */}
+      <div className=" flex justify-center items-center text-white relative
+        bg-secondary pt-20 h-fit pt-10 ">
         <div className="container pb-8 sm:pb-0">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* text content section */}
@@ -33,19 +34,17 @@ const Hero = () => {
                   Nawalah
                 </span>{" "}
               </h1>
-              <div data-aos="fade-up" data-aos-delay="200">
-                <Link to={"/HotelRegister"}>
-                  <button className="cursor-pointer border-2 mt-8 hover:scale-105 duration-200 text-[#f10057] border-[#f10057] font-bold text-lg hover:text-white py-4 px-14 rounded-full bg-white hover:bg-brandDark">
+              <div data-aos="fade-up" data-aos-delay="200" className="pt-12">
+                  <a href={"/#join"} className="cursor-pointer border-2 mt-8 hover:scale-105 duration-200 text-[#f10057] border-[#f10057] font-bold text-lg hover:text-white py-4 px-14 rounded-full bg-white hover:bg-brandDark">
                     Get Started
-                  </button>
-                </Link>
+                  </a>
               </div>
             </div>
             {/* Image section */}
             <div
               data-aos="zoom-in"
               data-aos-duration="300"
-              className="min-h-[450px] flex justify-center items-center relative order-1 sm:order-2"
+              className="min-h-[450px]  flex justify-center items-center relative order-1 sm:order-2"
             >
               <img
                 data-aos-once="true"

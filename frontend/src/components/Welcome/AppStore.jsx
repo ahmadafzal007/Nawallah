@@ -2,9 +2,9 @@ import React from "react";
 import AppStoreImg from "../../assets/app_store.png";
 import PlayStoreImg from "../../assets/play_store.png";
 import BgPng from "../../assets/appStore.png";
+import Mobile from "../../assets/mob.png";
 
 const backgroundStyle = {
-  backgroundImage: `url(${BgPng})`,
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
@@ -15,8 +15,8 @@ const AppStore = () => {
   return (
     <>
       <span id="join"></span>
-      <div className="py-14 z-20" style={backgroundStyle}>
-        <div className="container">
+      <div className="z-20 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2" >
+        <div className="container pl-40 pt-36">
           <div className="grid sm:grid-cols-2 grid-cols-1 items-center gap-4">
             <div
               data-aos="fade-up"
@@ -24,11 +24,11 @@ const AppStore = () => {
               className="space-y-6 max-w-xl mx-auto"
             >
               {/* text section */}
-              <h1 className="text-2xl text-center sm:text-left sm:text-4xl font-semibold text-black/90 pl-3">
-                Nawalah is available for Android and IOS
+              <h1 className="text-2xl font-mono   sm:text-4xl font-semibold text-gray-800/90 pl-3">
+                Nawalah is now available on Android and IOS
               </h1>
               {/* img section */}
-              <div className="flex flex-wrap justify-center sm:justify-start items-center">
+              <div className="flex  justify-center sm:justify-start items-center">
                 <a href="#">
                   <img
                     src={PlayStoreImg}
@@ -48,6 +48,9 @@ const AppStore = () => {
             {/* Empty div */}
             <div></div>
           </div>
+        </div>
+        <div className="pb-16 mt-4 ">
+          <img src={Mobile} alt="" />
         </div>
       </div>
     </>

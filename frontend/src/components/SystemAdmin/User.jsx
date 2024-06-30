@@ -227,14 +227,14 @@ const User = () => {
       <div>
         <div class="overflow-x-auto bg-costomFont rounded-xl ">
           <table class="w-full  sm:w-full md:w-full md:overflow-x-scroll sm:overflow-x-scroll text-left  text-gray-400 ">
-            <thead class="text-sm font-bold 2xl:text-lg selector  text-[#E5E5E5]   border-b border-grey-400">
+            <thead class="text-sm h-12 font-bold 2xl:text-lg selector  text-[#E5E5E5]   border-b border-grey-400">
               <tr className="">
-                <th scope="col" class="  pl-6 py-3 ">
-                  <input
+                <th scope="col" className="w-6 h-6  pl-6 py-3 ">
+                  {/* <input
                     type="checkbox"
                     class="w-6 h-6 
                        bg-[#dad3ff] rounded-lg border-gray-300 focus:ring-[#FF6154]  focus:ring-2"
-                  />
+                  /> */}
                 </th>
                 <th
                   scope="col"

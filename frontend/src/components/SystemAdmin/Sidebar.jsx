@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { CreateOutlined, DashboardOutlined, InsertChartOutlinedOutlined, LogoutOutlined, LunchDiningOutlined, MenuBookOutlined, PeopleAltOutlined, SettingsOutlined, StorefrontOutlined, LockOutlined } from "@mui/icons-material";
+import { CreateOutlined,  DashboardOutlined, InsertChartOutlinedOutlined, LogoutOutlined, LunchDiningOutlined, MenuBookOutlined, PeopleAltOutlined, SettingsOutlined, StorefrontOutlined, LockOutlined } from "@mui/icons-material";
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import LockPersonIcon from '@mui/icons-material/LockPerson';
 
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ export default function Sidebar() {
                 activeClassName="text-costomFont border-pink-500 bg-pink-200"
               >
                 <DashboardOutlined className="w-[22px] h-[22px]" />
-                <span className="hidden lg:block">Dashboard</span>
+                <span className="hidden  lg:block">Dashboard</span>
               </NavLink>
             </li>
 
@@ -76,7 +78,7 @@ export default function Sidebar() {
                 activeClassName="text-costomFont border-pink-500 bg-pink-200"
               >
                 <StorefrontOutlined className="w-[22px] h-[22px]" />
-                <span className="hidden lg:block">Restaurants</span>
+                <span className="hidden lg:block">Businesses</span>
               </NavLink>
             </li>
 
@@ -90,7 +92,7 @@ export default function Sidebar() {
                 }
                 activeClassName="text-costomFont border-pink-500 bg-pink-200"
               >
-                <StorefrontOutlined className="w-[22px] h-[22px]" />
+                <VolunteerActivismIcon className="w-[22px] h-[22px]" />
                 <span className="hidden lg:block">Welfares</span>
               </NavLink>
             </li>
@@ -106,7 +108,7 @@ export default function Sidebar() {
                 activeClassName="text-costomFont border-pink-500 bg-pink-200"
               >
                 <LockOutlined className="w-[22px] h-[22px]" />
-                <span className="hidden lg:block">Uauthorized Restaurants</span>
+                <span className="hidden lg:block">Uauthorized Businesses</span>
               </NavLink>
             </li>
 
@@ -120,7 +122,7 @@ export default function Sidebar() {
                 }
                 activeClassName="text-costomFont border-pink-500 bg-pink-200"
               >
-                <LockOutlined className="w-[22px] h-[22px]" />
+                <LockPersonIcon className="w-[22px] h-[22px]" />
                 <span className="hidden lg:block">Uauthorized Welfare</span>
               </NavLink>
             </li>

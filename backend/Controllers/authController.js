@@ -20,9 +20,10 @@ const authController = {
                     }) 
                     return ;
                 }
+                else{
                 const restaurantId = await restaurantService.createRestaurant(restaurant);
                 res.status(201).send({ id: restaurantId });
-  
+                }
       
         } catch (error) {
           console.log('auth controller ' , error);

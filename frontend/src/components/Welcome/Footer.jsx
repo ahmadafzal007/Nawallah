@@ -15,8 +15,8 @@ const FooterLinks = [
     link: "/#contact",
   },
   {
-    title: "Blog",
-    link: "/#blog",
+    title: "Services",
+    link: "/#services",
   },
 ];
 
@@ -37,20 +37,17 @@ const Footer = () => {
           <div className="py-8 px-4">
             <a
               href="#"
-              className="font-semibold tracking-widest text-2xl sm:text-3xl font-cursive
+              className="pl-6 font-semibold tracking-widest text-2xl sm:text-3xl font-cursive
 "
             >
               Nawalah
             </a>
-            <p className="  pt-4">
-             Serving the best in the town
-            </p>
+           <br/>
             <a
-              href="https://www.youtube.com/channel/UC1H-a1MKEFXRiFlGNLcy7gQ"
               target="_blank"
-              className="inline-block bg-[#f10057] py-2 px-4 mt-5 text-sm rounded-full"
+              className="inline-block border-[1px]  bg-[#f10057] py-2 px-4 mt-5 text-sm rounded-full"
             >
-              Visit our YouTube Channel
+             Where Every Bite Counts
             </a>
           </div>
 
@@ -103,7 +100,7 @@ const Footer = () => {
 
                 {/* social links */}
                 <div className="flex items-center gap-3 mt-6">
-                  <a href="#">
+                  <a href="https://www.instagram.com/nawalah.pk?igsh=ZTE0aGRzdnZ2NDUw">
                     <FaInstagram className="text-3xl hover:text-primary duration-300" />
                   </a>
                   <a href="#">

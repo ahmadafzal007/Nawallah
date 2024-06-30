@@ -14,7 +14,6 @@ import { AuthProvider } from './context/auth';
 import RequireAuth from './components/SystemAdmin/RequireAuth';
 import Login from './pages/Login';
 
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -47,7 +46,9 @@ root.render(
         />
         <Route exact path="/" element={<Welcome/>}/>
         <Route exact path="/WelfareDashBoard" element={<WelfareDashboard/>}/>
-        <Route exact path="/HotelRegister" element={<HotelRegistration/>}/>
+        <Route exact path="/HotelRegister" element={<HotelRegistration role="restaurant"/>}/>
+        <Route exact path="/GroceryRegister" element={<HotelRegistration role="grocery"/>}/>
+
         <Route exact path="/WelfareLogin" element={<WelfareLogin/>}/>
         <Route exact path="/WelfareRegister" element={<WelfareRegister/>}/>
         <Route path="/login" element={<Login />} />

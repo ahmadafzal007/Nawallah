@@ -80,7 +80,7 @@ const UnauthorizedRestaurants = () => {
   return (
     <div className='mx-[56px] md:mx-6 sm:mx-3 sm:pl-4 bg-white mt-24'>
       <div className="justify-between items-center w-full flex">
-        <h1 className='selector text-costomFont text-3xl font-cursive my-7 font-bold'>Unauthorized Restaurants</h1>
+        <h1 className='selector text-costomFont text-3xl font-cursive my-7 font-bold'>Unauthorized Businesses</h1>
       </div>
       <div>
         <div className="overflow-x-auto bg-costomFont rounded-xl">

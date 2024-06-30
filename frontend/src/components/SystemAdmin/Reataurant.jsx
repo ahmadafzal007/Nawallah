@@ -604,7 +604,7 @@ const Reataurant = () => {
   return (
     <div className="lg:mx-[56px] md:mx-6 mx-4 px-4 mt-24 bg-white">
       <div className="justify-end items-end w-full flex ">
-        <div className="md:flex gap-4  hidden items-center px-3  my-7 rounded-lg bg-white border border-costomFont w-[406px] h-12 shadow-[#0000001a]">
+        {/* <div className="md:flex gap-4  hidden items-center px-3  my-7 rounded-lg bg-white border border-costomFont w-[406px] h-12 shadow-[#0000001a]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -634,11 +634,11 @@ const Reataurant = () => {
             className="text-base w-[300px]  focus:outline-none focus:ring-0 font-normal selector text-[#E5E5E5] my-2  bg-white"
             placeholder="Search restaurant"
           />
-        </div>
+        </div> */}
       </div>
       <div className="flex flex-row justify-between mb-[13px]">
         <h1 className="selector text-costomFont font-cursive text-3xl   font-bold">
-          Registered Restaurants
+          Registered Businesses
         </h1>
         {/* <button  onClick={()=>openitem()} className='selector text-lg font-normal  py-2 text-[#E5E5E5] bg-brandDark flex gap-1 px-[16px] rounded-full justify-center items-center'><p>Add New</p><svg xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 12.3158H13.5V18H11.5V12.3158H5.5V10.4211H11.5V4.73685H13.5V10.4211H19.5V12.3158Z" fill="#E5E5E5"/>
@@ -649,12 +649,12 @@ const Reataurant = () => {
           <table class="w-full md:overflow-x-scroll overflow-x-scroll text-left  text-gray-400 ">
             <thead class="text-sm font-bold 2xl:text-lg selector  text-[#E5E5E5]   border-b border-grey-400">
               <tr className="">
-                <th scope="col" class="  pl-6 py-3 ">
-                  <input
+                <th scope="col" class=" h-12 pl-6 py-3 ">
+                  {/* <input
                     type="checkbox"
                     class="w-6 h-6 
                        bg-[#dad3ff] rounded-lg border-gray-300 focus:ring-[#FF6154]  focus:ring-2"
-                  />
+                  /> */}
                 </th>
                 <th scope="col" className="w-[200px] text-center">
                   Logo

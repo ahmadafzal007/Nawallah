@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import AuthApi from "../../API/AuthApi/index";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
 
 const WelfareRegistration = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const WelfareRegistration = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const dropIn = {
     hidden: {
@@ -66,7 +68,14 @@ const WelfareRegistration = () => {
   }, []);
 
   const handleLogoImageChange = (e) => {
-    setLogoImage(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file && ["image/jpeg", "image/jpg", "image/png"].includes(file.type)) {
+      setLogoImage(file);
+      setFormErrors({ ...formErrors, logoImage: "" });
+    } else {
+      setLogoImage(null);
+      setFormErrors({ ...formErrors, logoImage: "Only JPG, JPEG, and PNG files are allowed" });
+    }
   };
 
   const handleInputChange = (e) => {
@@ -91,6 +100,7 @@ const WelfareRegistration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const errors = validate();
     setFormErrors(errors);
 
@@ -106,6 +116,9 @@ const WelfareRegistration = () => {
           formData
         );
         const imageUrl = response.data.secure_url;
+        console.log("Image uploaded to:", imageUrl);
+
+
         const jsonData = {
           name: formValues.name,
           email: formValues.email,
@@ -121,20 +134,22 @@ const WelfareRegistration = () => {
         const serverResponse = await AuthApi.registerNgo(jsonData);
         console.log('server response',serverResponse)
 
-        if (serverResponse.status === 200) {
-          setShowAlert(true);
+        if (serverResponse.message) {
+          setFormErrors({...formErrors, email:serverResponse.message});
         } else {
-          throw new Error(serverResponse.message || 'Failed to register NGO');
-        }
+          setShowAlert(true);
+          
+                }
       } catch (error) {
         console.error("Error uploading image:", error);
-        alert("Error uploading image");
+        setFormErrors({ ...formErrors, logoImage: "error uploading image" });
       } finally {
         setUploading(false);
+        setLoading(false);
       }
     }
   };
-
+ 
   return (
     <div
       style={{
@@ -148,13 +163,22 @@ const WelfareRegistration = () => {
       }}
       className="flex justify-center items-center min-h-screen bg-brandDark p-4"
     >
+      {loading ? 
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+        </div>
+    :
       <motion.div
         variants={dropIn}
         initial="hidden"
         animate="visible"
-        className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 mr-20 max-w-5xl w-full"
+        className="group relative cursor-pointer items-center font-serif  justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 mr-20 max-w-5xl w-full"
       >
-        <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg max-w-5xl w-full p-5 rounded-lg shadow-lg">
+        <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg max-w-5xl w-full p-5 rounded-lg shadow-lg relative">
+          <CloseIcon 
+            className="absolute top-2 right-2 cursor-pointer text-black"
+            onClick={() => navigate("/")}
+          />
           <div className="text-2xl font-medium mb-2 relative">
             Welfare Registration
             <div className="absolute left-0 bottom-0 h-1 w-8 bg-brandDark rounded-full"></div>
@@ -267,6 +291,7 @@ const WelfareRegistration = () => {
                   type="file"
                   onChange={handleLogoImageChange}
                   required
+                  accept=".jpg,.jpeg,.png"
                   className="w-full p-2 border rounded-md focus:outline-none focus:border-purple-600"
                 />
                 {formErrors.logoImage && <p className="text-red-500 text-xs">{formErrors.logoImage}</p>}
@@ -280,8 +305,8 @@ const WelfareRegistration = () => {
                 disabled={uploading}
               />
             </div>
-            <div className="text-center">
-              <p>Already Have any Account? <span 
+            <div className="text-center pt-2">
+              <p>Already have an account? <span 
               onClick={()=>{
                 navigate("../WelfareLogin")
               }}
@@ -290,19 +315,30 @@ const WelfareRegistration = () => {
           </form>
         </div>
       </motion.div>
+}
+    
       {showAlert && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-            <h2 className="text-2xl font-bold mb-4">Request Submitted</h2>
+        <div   style={{
+          backgroundImage: `url(${bgNawalah})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }} className="fixed font-serif   top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50">
+          <div className="bg-white p-6 border-2 border-costomFont rounded-lg shadow-lg max-w-lg w-full">
+            <h2 className="flex items-center justify-center text-2xl font-bold mb-4">Request Submitted</h2>
             <p>Your request has proceeded. The system admin will verify it and inform you within the next 24 hours. Keep checking your email.</p>
             <button
-              className="mt-4 py-2 px-4 bg-brandDark text-white rounded-md"
+              className="flex justify-center items-center mt-4 py-2 px-4 bg-costomFont text-white rounded-md"
               onClick={() => setShowAlert(false)}
             >
               Close
             </button>
           </div>
         </div>
+   
       )}
     </div>
   );

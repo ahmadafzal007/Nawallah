@@ -12,6 +12,8 @@ import "aos/dist/aos.css";
 import SDGIcons from '../components/Welcome/SDGIcons';
 import Caption from '../components/Welcome/caption';
 import AboutUs from '../components/Welcome/aboutUs';
+import Footer2 from '../components/Welcome/footer2'
+import Contact from '../components/Welcome/contactUs';
 
 const WelcomePage = () => {
   React.useEffect(() => {
@@ -35,11 +37,19 @@ const WelcomePage = () => {
       {/* <Banner/> */}
       <Caption/>
       <SDGIcons/>
-      {/* <AppStore/> */}
+
 
       {/* <Testimonials/> */}
       <AboutUs/>
+      <AppStore/>
+
+
+      <Contact/>
+     
+   
+
       <Footer/>
+      <Footer2/>
     </div>
   )
 }

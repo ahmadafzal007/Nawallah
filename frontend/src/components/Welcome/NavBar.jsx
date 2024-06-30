@@ -96,12 +96,15 @@ const NavBar = () => {
                 variant="contained"
                 sx={{
                   backgroundColor: "#f10057",
+                  paddingBottom: 1,
+                  paddingTop: 1,
                   "&:hover": {
                     backgroundColor: "#f10057",
                     opacity: 0.7,
+                   
                   },
                 }}
-                className="text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+                className="text-white px-6 py-12 rounded-full flex items-center gap-2 cursor-pointer"
                 endIcon={<ExpandMoreIcon />}
               >
                 For Business
@@ -111,7 +114,11 @@ const NavBar = () => {
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
-                className="mt-2 z-50"
+                sx={{
+                  width: 800,
+                   
+                  }}
+                className="mt-2 width-[150px] z-50"
               >
                 <MenuItem  onClick={()=>{
                   handleMenuClose()
@@ -119,16 +126,19 @@ const NavBar = () => {
                 }}>
                   <IoRestaurant /> <p className="pl-2">Restaurants</p>
                 </MenuItem>
-                <MenuItem onClick={handleMenuClose}>
+                <MenuItem onClick={()=>{
+                  handleMenuClose()
+                  navigate("/GroceryRegister")
+                }}>
                   <MdLocalGroceryStore /> <p className="pl-2">Grocery Stores</p>{" "}
                 </MenuItem>
                 <MenuItem  onClick={()=>{
                   handleMenuClose()
-                  navigate("/WelfareRegister")
+                  navigate("/WelfareLogin")
                 }}>
                   <FaBuildingNgo /> <p className="pl-2">Welfares</p>
                 </MenuItem>
-              </Menu>
+              </Menu> 
             </div>
           </div>
 
@@ -143,10 +153,10 @@ const NavBar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-2 p-10 rounded-b-lg bg-darkBlue">
+          <div className="md:hidden mt-7 p-10 font-serif rounded-b-md border-r-2 border-l-2 border-b-2 border-[#f10057] bg-[#0C2D57]">
             <ul className="flex flex-col font-semibold items-start gap-4">
               {MenuItems.map((menuItem) => (
-                <li key={menuItem.id}>
+                <li  key={menuItem.id}>
                   <a
                     href={menuItem.link}
                     className="text-lg py-2 px-4 text-white/70 hover:text-white duration-200 block"
@@ -196,7 +206,7 @@ const NavBar = () => {
                 }}>Grocery Stores</MenuItem>
                 <MenuItem onClick={()=>{
                   handleMenuClose()
-                  navigate("/HotelRegister")
+                  navigate("/WelfareLogin")
                 }}>Welfares</MenuItem>
               </Menu>
             </div>

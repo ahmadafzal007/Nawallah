@@ -47,7 +47,7 @@ const Services = () => {
         <div className="container">
           {/* Heading section  */}
           <div className="text-center ">
-            <h1 className="text-6xl pb-4 text-[#d11559] font-bold font-cursive mb-36 text-gray-800">
+            <h1 className="text-6xl pb-4 text-[#f10057] font-bold font-cursive mb-36">
               Nawalah Helps You 
             </h1>
           </div>
