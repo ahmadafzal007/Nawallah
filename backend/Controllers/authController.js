@@ -17,7 +17,7 @@ const authController = {
                   // console.log(restaurantService.emailExists(email))
                     res.status(403).json({
                         "messsage":"Email already Exists"
-                    })
+                    }) 
                     return ;
                 }
                 const restaurantId = await restaurantService.createRestaurant(restaurant);
