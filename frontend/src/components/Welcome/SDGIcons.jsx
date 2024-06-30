@@ -92,6 +92,7 @@ const Card = ({ frontImage, backText }) => (
     className="group"
     style={{
       ...cardStyle,
+      fontFamily: 'serif'
     }}
     onMouseEnter={(e) => e.currentTarget.style.transform = 'rotateY(0.5turn)'}
     onMouseLeave={(e) => e.currentTarget.style.transform = 'rotateY(0turn)'}

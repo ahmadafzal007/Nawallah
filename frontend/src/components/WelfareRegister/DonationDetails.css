@@ -1,20 +1,22 @@
 .green-table .ant-table {
-  background-color: #eb0a0a; /* Light green background color */
+  background-color: #ffffff;
+  /* background-color: #eb0a0a; Light green background color */
 }
 
+
 .green-table .ant-table-thead > tr > th {
-  background-color: #560000; /* Darker green for the header */
+  background-color: #f10057; /* Darker green for the header */
   color: #ffffff; /* White text for the header */
 }
 
 .green-table .ant-table-tbody > tr > td {
-  background-color: #b05d5d; /* Same light green for the table body */
+  background-color: #ff7ead; /* Same light green for the table body */
   transition: background-color 0.3s; /* Smooth transition effect */
   
 }
 
 .green-table .ant-table-tbody .ant-table-row > .ant-table-cell-row-hover{
-  background-color: #560000; /* Black background color on hover */
+  background-color: #f10057; /* Black background color on hover */
   
 }
 

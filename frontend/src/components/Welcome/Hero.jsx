@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="-z-10 relative">
+    <div className="relative">
     {/* min-h-[550px] sm:min-h-[600px]  */}
       <div className=" flex justify-center items-center text-white relative
         bg-secondary pt-20 h-fit pt-10 ">
@@ -34,12 +34,10 @@ const Hero = () => {
                   Nawalah
                 </span>{" "}
               </h1>
-              <div data-aos="fade-up" data-aos-delay="200">
-                <Link to={"/HotelRegister"}>
-                  <button className="cursor-pointer border-2 mt-8 hover:scale-105 duration-200 text-[#f10057] border-[#f10057] font-bold text-lg hover:text-white py-4 px-14 rounded-full bg-white hover:bg-brandDark">
+              <div data-aos="fade-up" data-aos-delay="200" className="pt-12">
+                  <a href={"/#join"} className="cursor-pointer border-2 mt-8 hover:scale-105 duration-200 text-[#f10057] border-[#f10057] font-bold text-lg hover:text-white py-4 px-14 rounded-full bg-white hover:bg-brandDark">
                     Get Started
-                  </button>
-                </Link>
+                  </a>
               </div>
             </div>
             {/* Image section */}

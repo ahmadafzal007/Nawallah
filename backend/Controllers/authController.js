@@ -16,13 +16,14 @@ const authController = {
                   console.log("inside if")
                   // console.log(restaurantService.emailExists(email))
                     res.status(403).json({
-                        "messsage":"Email already Exists"
+                        messsage:"Email already Exists"
                     })
                     return ;
                 }
+                else{
                 const restaurantId = await restaurantService.createRestaurant(restaurant);
                 res.status(201).send({ id: restaurantId });
-  
+                }
       
         } catch (error) {
           console.log('auth controller ' , error);
