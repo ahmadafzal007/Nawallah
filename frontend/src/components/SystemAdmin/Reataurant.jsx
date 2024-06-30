@@ -646,16 +646,10 @@ const Reataurant = () => {
       </div>
       <div>
         <div class="overflow-x-auto bg-costomFont relative rounded-xl  ">
-          <table class="w-full md:overflow-x-scroll overflow-x-scroll text-left  text-gray-400 ">
-            <thead class="text-sm font-bold 2xl:text-lg selector  text-[#E5E5E5]   border-b border-grey-400">
-              <tr className="">
-                <th scope="col" class=" h-12 pl-6 py-3 ">
-                  {/* <input
-                    type="checkbox"
-                    class="w-6 h-6 
-                       bg-[#dad3ff] rounded-lg border-gray-300 focus:ring-[#FF6154]  focus:ring-2"
-                  /> */}
-                </th>
+          <table class="w-full text-lg md:overflow-x-scroll overflow-x-scroll text-left  text-gray-400 ">
+            <thead class="text-lg h-16 font-bold 2xl:text-lg selector  text-[#E5E5E5]   border-b border-grey-400">
+              <tr className="h-12">
+             
                 <th scope="col" className="w-[200px] text-center">
                   Logo
                 </th>
@@ -685,47 +679,39 @@ const Reataurant = () => {
                     </th> */}
               </tr>
             </thead>
-            <tbody className="text-white">
+            <tbody className="text-white ">
               {restaurant?.map((val, ind) => (
-                <tr class=" border-b  text-[#E5E5E5] text-sm   selector font-normal border-gray-400 ">
-                  <th
-                    scope="row"
-                    class="py-4 pl-6 font-light text-sm   2xl:text-lg text-white whitespace-nowrap "
-                  >
-                    <input
-                      type="checkbox"
-                      class="w-6 h-6  bg-gray-100  rounded-lg border-gray-300 focus:ring-[#FF6154]  focus:ring-2"
-                    />
-                  </th>
-                  <td className="w-[200px] items-center text-center justify-center">
-                    <div className="flex items-center justify-center">
+                <tr class=" border-b h-16  text-[#E5E5E5] text-lg   selector font-normal border-gray-400 ">
+                  
+                  <td className="w-[200px] items-center text-center justify-center border border-gray-400">
+                    <div className="flex items-center justify-center ">
                       <img
-                        class="w-10 h-10 items-center text-center justify-center rounded-full"
+                        className="w-10 h-10 items-center text-center justify-center rounded-full  "
                         src={val.logo}
                         alt="Bonnie image"
                       />
                     </div>
                   </td>
-                  <td className="w-[200px] justify-center items-center text-center">
+                  <td className="w-[200px] text-lg justify-center items-center text-center border border-gray-400 ">
                     {val.username}
                   </td>
-                  <td className="w-[200px] justify-center items-center text-center">
+                  <td className="w-[200px] text-lg justify-center items-center text-center  border border-gray-400">
                     {" "}
                     {val.email}{" "}
                   </td>
-                  <td className="w-[200px] justify-center items-center text-center">
+                  <td className="w-[200px] text-lg justify-center items-center text-center  border border-gray-400">
                     {" "}
                     {val.address}{" "}
                   </td>
-                  <td className="w-[200px] justify-center items-center text-center">
+                  <td className="w-[200px] text-lg justify-center items-center text-center border border-gray-400">
                     {" "}
                     {val.monthlyIncome}{" Rs "}
                   </td>
 
-                  <td className="w-[200px] justify-center items-center text-center">
+                  <td className="w-[200px] text-lg justify-center items-center text-center  border border-gray-400">
                     {val.ordersCount}
                   </td>
-                  <td className="w-[200px] justify-center items-center text-center">
+                  <td className="w-[200px]  justify-center items-center text-center border border-gray-400">
                     <div className="flex flex-row gap-3 justify-center  text-center items-center">
                       <div
                         className="cursor-pointer"

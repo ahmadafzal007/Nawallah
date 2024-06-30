@@ -41,8 +41,8 @@ const Welfare = () => {
 
       {/* Welfare Table */}
       <div className="overflow-x-auto rounded-xl bg-costomFont">
-        <table className="w-full text-left text-">
-          <thead className="text-sm font-bold selector text-[#E5E5E5] border-b border-grey-400">
+        <table className="w-full text-center text-left text-">
+          <thead className="text-lg text-center h-16 font-bold selector text-[#E5E5E5] border-b border-grey-400">
             <tr>
               <th scope="col" className="pl-6 py-3">Logo</th>
               <th scope="col">Welfare Name</th>
@@ -54,15 +54,15 @@ const Welfare = () => {
           </thead>
           <tbody className="text-white">
             {welfares.map((welfare) => (
-              <tr key={welfare.id} className="border-b text-sm selector font-normal border-gray-400">
-                <td className="py-4 pl-6 font-light text-sm whitespace-nowrap">
-                  <img src={welfare.logo} alt="Welfare Logo" className="h-10 w-10 rounded-full" />
+              <tr key={welfare.id} className="border text-lg text-center selector font-normal border-gray-400">
+                <td className="border border-gray-400 py-4 pl-6 font-light text-sm whitespace-nowrap">
+                  <img src={welfare.logoImage} alt="Welfare Logo" className="h-10 w-10 rounded-full" />
                 </td>
-                <td>{welfare.name}</td>
-                <td>{welfare.email}</td>
-                <td>{welfare.phone}</td>
-                <td>{welfare.address}</td>
-                <td>
+                <td className="border border-gray-400">{welfare.name}</td>
+                <td className="border border-gray-400">{welfare.email}</td>
+                <td className="border border-gray-400">{welfare.phone}</td>
+                <td className="border border-gray-400">{welfare.address}</td>
+                <td className="border border-gray-400  pl-7">
                   <div className="flex flex-row gap-3 cursor-pointer">
                     <div className="cursor-pointer" onClick={() => deleteWelfare(welfare.id)}>
                       <DeleteOutline />

@@ -85,9 +85,9 @@ const UnauthorizedRestaurants = () => {
       <div>
         <div className="overflow-x-auto bg-costomFont rounded-xl">
           <table className="w-full sm:w-full md:w-full md:overflow-x-scroll sm:overflow-x-scroll text-left text-gray-400">
-            <thead className="text-sm font-bold 2xl:text-lg selector text-[#E5E5E5] border-b border-grey-400">
+            <thead className="text-lg text-center font-bold 2xl:text-lg selector text-[#E5E5E5] border-b border-grey-400">
               <tr className="">
-                <th scope="col" className="pl-6 py-3">Logo</th>
+                <th scope="col" className="pl-6 text-lg py-3">Logo</th>
                 <th scope="col">Restaurant Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
@@ -95,18 +95,18 @@ const UnauthorizedRestaurants = () => {
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody className='text-white'>
+            <tbody className='text-white '>
               {restaurants.map((restaurant) => (
-                <tr key={restaurant.id} className="border-b text-[#E5E5E5] text-sm selector font-normal border-gray-400">
-                  <td className="py-4 pl-6 font-light text-sm 2xl:text-lg text-white whitespace-nowrap">
+                <tr key={restaurant.id} className="border-b text-center text-[#E5E5E5]  text-lg selector font-normal ">
+                  <td className=" py-4 pl-6 font-light text-lg 2xl:text-lg text-white whitespace-nowrap">
                     <img src={restaurant.logo} alt={`${restaurant.name} logo`} className="w-10 h-10 rounded-full" />
                   </td>
-                  <td>{restaurant.username}</td>
-                  <td>{restaurant.email}</td>
-                  <td>{restaurant.address}</td>
-                  <td>{restaurant.phone}</td>
-                  <td>
-                    <div className='flex flex-row gap-3'>
+                  <td className="border border-grey-400">{restaurant.username}</td>
+                  <td className="border border-grey-400">{restaurant.email}</td>
+                  <td className="border border-grey-400">{restaurant.address}</td>
+                  <td className="border border-grey-400">{restaurant.phone}</td>
+                  <td className="border border-grey-400">
+                    <div className='flex flex-row lg:pl-14 md:pl-1 sm:pl-1 lg:pr-0 md:pr-1 sm:pr-1 gap-3'>
                       <Button variant="contained" color="success" onClick={() => handleAccept(restaurant.id)}>Accept</Button>
                       <Button variant="contained" color="error" onClick={() => handleReject(restaurant.id)}>Reject</Button>
                     </div>
