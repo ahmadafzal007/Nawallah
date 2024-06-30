@@ -139,7 +139,8 @@ const Registration = ({ role }) => {
           password: password,
           logo: imageUrl,
           location: location,
-          openingHours: openingHours
+          openingHrs: openingHours,
+          restaurantName: formValues.name
         };
 
         console.log("Data to be sent to backend:", jsonData);
