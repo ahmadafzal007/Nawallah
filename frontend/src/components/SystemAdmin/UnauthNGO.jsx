@@ -84,8 +84,8 @@ const handleReject = async (id) => {
       </div>
       <div>
         <div className="overflow-x-auto rounded-xl bg-costomFont">
-          <table className="w-full sm:w-full md:w-full md:overflow-x-scroll sm:overflow-x-scroll text-left text-gray-400">
-            <thead className="text-sm font-bold 2xl:text-lg selector text-[#E5E5E5] border-b border-grey-400">
+          <table className="w-full py-8 sm:w-full md:w-full md:overflow-x-scroll sm:overflow-x-scroll text-left text-gray-400">
+            <thead className=" text-lg text-center font-bold 2xl:text-lg selector text-[#E5E5E5] border-b border-grey-400">
               <tr className="">
                 <th scope="col" className="pl-6 py-3">Logo</th>
                 <th scope="col">Welfare Name</th>
@@ -95,18 +95,18 @@ const handleReject = async (id) => {
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody className='text-white'>
+            <tbody className='text-white text-center'>
               {welfares.map((welfare) => (
-                <tr key={welfare.id} className="border-b text-[#E5E5E5] text-sm selector font-normal border-gray-400">
-                  <td className="py-4 pl-6 font-light text-sm 2xl:text-lg text-white whitespace-nowrap">
-                    <img src={welfare.logo} alt={`${welfare.name} logo`} className="w-10 h-10 rounded-full" />
+                <tr key={welfare.id} className="border text-center md:text-center sm:text-center text-[#E5E5E5] text-lg selector font-normal border-gray-400">
+                  <td className="py-4 pl-6 border md:text-center sm:text-center border-gray-400 font-light text-lg 2xl:text-lg text-white whitespace-nowrap">
+                    <img src={welfare.logoImage} alt={`${welfare.name} logo`} className="w-10 h-10 rounded-full" />
                   </td>
-                  <td>{welfare.name}</td>
-                  <td>{welfare.email}</td>
-                  <td>{welfare.phone}</td>
-                  <td>{welfare.address}</td>
-                  <td>
-                    <div className='flex flex-row gap-3'>
+                  <td className="boder border-gray-400">{welfare.name}</td>
+                  <td className="border border-gray-400">{welfare.email}</td>
+                  <td className="border border-gray-400">{welfare.phone}</td>
+                  <td className="border border-gray-400">{welfare.address}</td>
+                  <td className="border border-gray-400">
+                    <div className='flex flex-row lg:pl-14 md:pl-1 sm:pl-1 lg:pr-0 md:pr-1 sm:pr-1 gap-3'>
                       <Button variant="contained" color="success" onClick={() => handleAccept(welfare.id)}>Accept</Button>
                       <Button variant="contained" color="error" onClick={() => handleReject(welfare.id)}>Reject</Button>
                     </div>

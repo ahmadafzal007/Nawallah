@@ -100,10 +100,10 @@ const Dashboardsection1 = () => {
               </div>
               <div className="flex flex-col py-[35px] md:py-8 sm:py-8 pr-16 lg:pr-8 md:pr-4 sm:pr-4">
                 <h1 className=" text-[46px] selector  font-bold   text-white">
-                  {revenue}
+                 <span className="text-[35px]">Rs</span>  {revenue}
                 </h1>
 
-                <p class="text-white selector text-lg font-normal  ">
+                <p class="text-white selector text-xl font-normal  ">
                   Total Revenue
                 </p>
                 <div className="flex flex-row gap-2 mt-2">
@@ -124,9 +124,7 @@ const Dashboardsection1 = () => {
                       </svg>
                     </div>
                   </div>
-                  <p class=" text-xs font-normal selector  text-white ">
-                    12% (30 days)
-                  </p>
+                 
                 </div>
               </div>
             </div>
@@ -206,7 +204,7 @@ const Dashboardsection1 = () => {
                  {order}
                 </h1>
 
-                <p class="text-white selector text-lg font-normal  ">
+                <p class="text-white selector text-xl font-normal  ">
                   Total Orders
                 </p>
                 <div className="flex flex-row gap-2 mt-2">
@@ -227,9 +225,7 @@ const Dashboardsection1 = () => {
                       </svg>
                     </div>
                   </div>
-                  <p class=" text-xs font-normal selector  text-white ">
-                    12% (30 days)
-                  </p>
+                  
                 </div>
               </div>
             </div>
@@ -292,7 +288,7 @@ const Dashboardsection1 = () => {
                  {donations}
                 </h1>
 
-                <p class="text-white  selector text-lg font-normal  ">
+                <p class="text-white  selector text-xl font-normal  ">
                   Total Donations
                 </p>
                 <div className="flex flex-row gap-2 mt-2">
@@ -313,9 +309,7 @@ const Dashboardsection1 = () => {
                       </svg>
                     </div>
                   </div>
-                  <p class=" text-xs font-normal selector  text-white ">
-                    12% (30 days)
-                  </p>
+                
                 </div>
               </div>
             </div>
