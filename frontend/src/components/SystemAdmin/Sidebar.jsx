@@ -14,7 +14,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className=" w-[50px] md:w-[150px] lg:w-[255px] h-screen  bg-white">
+    <div className=" w-[50px] fixed md:static overflow-y-scroll md:w-[150px] lg:w-[255px] h-screen  bg-white">
       <div className="selector bg-costomFont fixed w-fit  lg:w-[255px]  h-screen">
         <div className="py-4 flex flex-col  h-screen">
           <h1 className="hidden md:block font-cursive text-white text-3xl pb-20 pl-5">

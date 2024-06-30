@@ -87,7 +87,7 @@ const Dashboardsection2 = () => {
   const monthlyChartData = transformOrderData(orders);
 
   return (
-    <div className='w-full'>
+    <div className='w-full hidden md:block'>
       <div className='mx-[25px] my-[25px] lg:w-[96%] w-[80%] py-10 rounded-[14px] bg-costomFont'>
         <div className='flex px-[80px] py-[25px] flex-row justify-between'>
           <h1 className='text-white selector text-[22px] font-bold'>Total Revenue</h1>

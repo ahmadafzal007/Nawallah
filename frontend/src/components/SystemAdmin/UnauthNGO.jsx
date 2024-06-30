@@ -78,7 +78,7 @@ const handleReject = async (id) => {
 };
 
   return (
-    <div className='mx-[56px] md:mx-6 sm:mx-3 sm:pl-4  mt-24 bg-white'>
+    <div className='ml-[56px] mr-2 md:mx-6 sm:mx-3 sm:pl-4  mt-24 bg-white'>
       <div className="justify-between items-center w-full flex">
         <h1 className='selector text-costomFont font-cursive  text-3xl my-7 font-bold'>Unthorized Welfares</h1>
       </div>

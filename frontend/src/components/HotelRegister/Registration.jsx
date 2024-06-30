@@ -192,7 +192,7 @@ const Registration = ({ role }) => {
         variants={dropIn}
         initial="hidden"
         animate="visible"
-        className={`group relative cursor-pointer  ${showAlert&&"hidden" }items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 mr-20 max-w-5xl w-full`}
+        className={`group relative cursor-pointer  ${showAlert&&"hidden" }items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 mt-60 md:mt-0 max-w-5xl w-full`}
       >
         <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg max-w-5xl w-full p-5 rounded-lg shadow-lg relative">
           <div className="text-2xl font-medium mb-2 relative">

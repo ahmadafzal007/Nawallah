@@ -52,8 +52,8 @@ const Dashboardsection1 = () => {
     getTotalOrders();
   }, []);
   return (
-    <div>
-      <div className="grid  md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4 mx-[25px] my-[17px]  md:gap-5  ">
+    <div className="mt-20 ">
+      <div className="grid  md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4 mx-[25px] my-[17px]   md:gap-5 ">
         <div class=" flex flex-row rounded-xl w-[85%] lg:w-[100%]   justify-center items-center  shadow-md bg-costomFont ">
           <div>
             <div className="flex flex-row  gap-8 lg:gap-4 justify-center items-center  ">

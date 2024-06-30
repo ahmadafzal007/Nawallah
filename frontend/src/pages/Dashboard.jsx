@@ -8,10 +8,10 @@ import Dashboardsection2 from '../components/SystemAdmin/Dashboardsection2'
 
 const Dashboard = () => {
   return (
-    <div className='w-full h-screen '>
+    <div className='w-full h-screen  ml-10 md:ml-0'>
 <Dashboardsection1/>
 <Dashboardsection2/>
-<Dashboardsection3/>
+{/* <Dashboardsection3/> */}
     </div>
   )
 }

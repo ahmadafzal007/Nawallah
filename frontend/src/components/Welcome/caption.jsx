@@ -34,8 +34,8 @@ return (
     </div>
     </div>
 
-    <div className=" max-w-s mb-4  mx-auto text-right">
-      <div className="mt-2 text-left">
+    <div className=" max-w-s mb-4  mx-auto text-center md:text-right">
+      <div className="mt-2 px-3 text-center md:text-left">
         <p className=" mr-12 font-extrabold text-5xl text-[#d11559] font-sans">
           {caption}
         </p>
