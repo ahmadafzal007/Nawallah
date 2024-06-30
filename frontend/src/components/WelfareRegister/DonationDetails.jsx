@@ -23,18 +23,16 @@ const DonationDetails = () => {
       try {
         const response = await NgoController.getAllDonations();
         if (response.success) {
-          console.log(response.donations);
           const donationData = response.donations.map((item) => {
             return {
               id: item.id,
               restaurantName: item.restaurantName,
               foodDetails: item.description,
               restaurantAddress: item.restaurantLocation,
-              phoneNumber: "123-456-7890",
+              phoneNumber: item.restaurantPhone,
             };
           });
   
-          console.log("donation data", donationData);
           setDonations(donationData);
         } else {
           console.log("Failed to fetch donations");
@@ -48,14 +46,14 @@ const DonationDetails = () => {
         const email = JSON.parse(localStorage.getItem("ngo")).email;
         const response = await NgoController.getAcceptedDonations(email);
         if (response.success) {
-          console.log(response.acceptedDonations);
+          console.log('respnse ' , response.acceptedDonations);
           const acceptedData = response.acceptedDonations.map((item) => {
             return {
               id: item.id,
               restaurantName: item.restaurantName,
               foodDetails: item.description,
               restaurantAddress: item.restaurantLocation,
-              phoneNumber: "123-456-7890",
+              phoneNumber: item.restaurantPhone,
             };
           });
   
