@@ -14,10 +14,10 @@ export default function Sidebar() {
   };
 
   return (
-    <div className=" w-[50px] md:w-[50px] lg:w-[255px] h-screen  bg-white">
+    <div className=" w-[50px] md:w-[150px] lg:w-[255px] h-screen  bg-white">
       <div className="selector bg-costomFont fixed w-fit  lg:w-[255px]  h-screen">
-        <div className="py-4 flex flex-col justify-between h-screen">
-          <h1 className="hidden md:block font-cursive text-white text-3xl pl-5">
+        <div className="py-4 flex flex-col  h-screen">
+          <h1 className="hidden md:block font-cursive text-white text-3xl pb-20 pl-5">
             Hello Admin
           </h1>
           <ul className="space-y-[18.5px]">
@@ -52,7 +52,7 @@ export default function Sidebar() {
               </NavLink>
             </li>
 
-            <li>
+            {/* <li>
               <NavLink
                 to="/orders"
                 className={({ isActive }) =>
@@ -65,7 +65,7 @@ export default function Sidebar() {
                 <MenuBookOutlined className="w-[22px] h-[22px]" />
                 <span className="hidden lg:block">Orders</span>
               </NavLink>
-            </li>
+            </li> */}
 
             <li>
               <NavLink
@@ -122,19 +122,21 @@ export default function Sidebar() {
                 }
                 activeClassName="text-costomFont border-pink-500 bg-pink-200"
               >
-                <LockPersonIcon className="w-[22px] h-[22px]" />
+                <LockPersonIcon className="w-[22px] h-[22px] " />
                 <span className="hidden lg:block">Uauthorized Welfare</span>
               </NavLink>
             </li>
 
           </ul>
+          <div className="pt-56">
           <div
             onClick={logout}
-            className="text-brandDark flex items-center gap-3 p-2.5  text-base font-normal rounded-lg hover:bg-pink-100 border-dashed"
+            className="text-brandDark flex items-center gap-3 p-2.5   text-base font-normal rounded-lg hover:bg-pink-100 border-dashed"
           >
             <LogoutOutlined className="w-[22px] h-[22px]" />
             <span className="hidden lg:block">Sign Out</span>
           </div>
+        </div>
         </div>
       </div>
     </div>
