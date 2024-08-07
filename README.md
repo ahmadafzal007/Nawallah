@@ -47,4 +47,4 @@ Experience Nawalah live by visiting our hosted website:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/nawalah.git
+   https://github.com/ahmadafzal007/Nawallah.git
