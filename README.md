@@ -19,7 +19,7 @@ This project combines advanced technology with social impact, offering a practic
 
 Watch the demo video to see Nawalah in action:
 
-[![Nawalah Demo](https://img.youtube.com/vi/avNBU84yJQs/0.jpg)](https://www.youtube.com/watch?v=avNBU84yJQs)
+[![Nawalah Demo](https://img.youtube.com/vi/4E9FwZlr-lY/0.jpg)](https://www.youtube.com/watch?v=4E9FwZlr-lY)
 
 Click on the image to watch the demo video.
 
