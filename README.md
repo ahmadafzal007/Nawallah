@@ -1,4 +1,4 @@
-# 🌟 Nawalah: Revolutionizing Food Waste Management 🌟
+# 🌟 Nawalah: Revolutionizing Food Waste Management 
 
 **Nawalah** is a groundbreaking platform designed to combat food wastage by facilitating connections between businesses and NGOs. Through a streamlined registration process and an intuitive admin panel, Nawalah empowers restaurants, grocery stores, and NGOs to work together in reducing food waste and supporting communities.
 
